@@ -226,8 +226,8 @@
 </head>
 <body>
   <header>
-    <div class="badge"><span>🧾</span><strong><h1>農人資料 JSON 產生器</h1></strong></div>
-    <h2>把青農故事整理成 farmers.json</h2>
+    <div class="badge"><span>🧾</span><strong>農人資料 JSON 產生器</strong></div>
+    <h1>把青農故事整理成 farmers.json</h1>
     <p class="subtitle">
       將農場名稱、縣市、作物、品牌故事、Vocus文章連結與 AI 品牌分析整理成農人足跡地圖可讀取的 JSON 格式。
       先用簡易表單建立資料，未來可再升級成 Google Sheet 或 Vocus 文章半自動整理。
@@ -240,9 +240,60 @@
   </header>
 
   <main>
+    
+    <section class="card" style="margin-bottom:18px;">
+      <h2>① Vocus 文章網址 → AI 轉 JSON 指令</h2>
+      <p class="muted">
+        貼上 Vocus 文章網址，按下按鈕後，系統會自動產生一段「請 AI 閱讀文章並整理成 farmers.json」的指令。
+        複製後貼到 ChatGPT，即可請 AI 產生可放進農人足跡地圖的 JSON。
+      </p>
+
+      <div class="form-grid">
+        <div class="full">
+          <label for="vocusUrl">Vocus 文章網址</label>
+          <input id="vocusUrl" placeholder="例如：https://vocus.cc/article/xxxxxxxxxxxx">
+        </div>
+
+        <div>
+          <label for="defaultCounty">預設縣市，可留空</label>
+          <input id="defaultCounty" placeholder="例如：屏東">
+        </div>
+
+        <div>
+          <label for="defaultCrop">預設作物，可留空</label>
+          <input id="defaultCrop" placeholder="例如：芒果">
+        </div>
+
+        <div>
+          <label for="defaultX">地圖 X 座標，可留空</label>
+          <input id="defaultX" type="number" placeholder="例如：48">
+        </div>
+
+        <div>
+          <label for="defaultY">地圖 Y 座標，可留空</label>
+          <input id="defaultY" type="number" placeholder="例如：82">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button onclick="generateAiPrompt()">產生 AI 轉 JSON 指令</button>
+        <button class="secondary" onclick="copyAiPrompt()">複製 AI 指令</button>
+        <button class="secondary" onclick="clearAiPrompt()">清除 AI 指令</button>
+      </div>
+
+      <h3>AI 轉 JSON 指令</h3>
+      <textarea id="aiPromptOutput" class="output" style="min-height:360px;background:#0f172a;color:#d1fae5;"></textarea>
+
+      <div class="note">
+        建議流程：貼上 Vocus 網址 → 產生 AI 指令 → 複製到 ChatGPT → 取得 JSON → 貼回下方表單或直接放入 farmers.json。
+        這種方式不用放 API Key，也不會產生額外費用。
+      </div>
+    </section>
+
+
     <section class="grid">
       <div class="card">
-        <h2>① 輸入農人故事資料</h2>
+        <h2>② 手動輸入農人故事資料</h2>
         <p class="muted">建議先從 Vocus 文章或學生訪談稿中整理重點，再填入下方欄位。</p>
 
         <div class="form-grid">
@@ -331,7 +382,7 @@
       </div>
 
       <div class="card">
-        <h2>② farmers.json 輸出結果</h2>
+        <h2>③ farmers.json 輸出結果</h2>
         <p class="muted">可直接複製以下 JSON，貼進 <strong>farmers.json</strong>。目前產生的是「單筆資料陣列」，方便直接測試。</p>
         <pre id="output" class="output"></pre>
 
@@ -340,7 +391,7 @@
     </section>
 
     <section class="card" style="margin-top:18px;">
-      <h2>③ 建議使用流程</h2>
+      <h2>④ 建議使用流程</h2>
       <div class="steps">
         <div class="step">
           <strong>1. 從文章整理資料</strong>
@@ -462,6 +513,96 @@ function clearForm(){
   document.getElementById("output").textContent = "";
   document.getElementById("preview").innerHTML = "";
 }
+
+
+function generateAiPrompt(){
+  const url = document.getElementById("vocusUrl").value.trim();
+  const county = document.getElementById("defaultCounty").value.trim();
+  const crop = document.getElementById("defaultCrop").value.trim();
+  const x = document.getElementById("defaultX").value.trim();
+  const y = document.getElementById("defaultY").value.trim();
+
+  if(!url){
+    alert("請先貼上 Vocus 文章網址！");
+    return;
+  }
+
+  const prompt = `請閱讀以下 Vocus 文章網址，並協助我整理成「農人足跡地圖 farmers.json」可使用的 JSON 格式。
+
+Vocus文章網址：
+${url}
+
+${county ? `預設縣市：${county}` : ""}
+${crop ? `預設主要作物：${crop}` : ""}
+${x && y ? `預設地圖座標：position.x=${x}, position.y=${y}` : ""}
+
+請依照文章內容，判斷並整理以下欄位：
+
+1. id：請用英文或羅馬拼音加縣市產生，例如 mango-pingtung，不要有空白。
+2. name：農場名稱或故事名稱。
+3. farmer：農人名稱或角色；若文章沒有明確姓名，可用「青農」、「農友」、「農場主人」等。
+4. county：縣市。
+5. town：鄉鎮地區。
+6. crop：主要作物。
+7. icon：適合作物的 emoji，例如芒果🥭、酪梨🥑、茶🍵、咖啡☕、稻米🌾。
+8. position：請輸出 { "x": 數字, "y": 數字 }，若不確定，依照縣市在台灣地圖大約位置估算。
+9. theme：一句話品牌主題。
+10. story：100～160字故事摘要，適合高中職學生閱讀。
+11. learning：這篇故事適合課堂討論的學習重點。
+12. link：請填入上方 Vocus 文章網址。
+13. productIdea：可延伸商品，例如禮盒、果乾、果醬、體驗活動、飲品、伴手禮。
+14. customer：適合客群，例如親子家庭、企業送禮、觀光客、健康飲食族群。
+15. marketing：行銷切入點，例如產地故事、季節限定、友善耕作、地方創生、青農返鄉。
+
+請只輸出 JSON 陣列，不要加任何說明文字。
+格式如下：
+
+[
+  {
+    "id": "",
+    "name": "",
+    "farmer": "",
+    "county": "",
+    "town": "",
+    "crop": "",
+    "icon": "",
+    "position": {
+      "x": 50,
+      "y": 50
+    },
+    "theme": "",
+    "story": "",
+    "learning": "",
+    "link": "${url}",
+    "productIdea": "",
+    "customer": "",
+    "marketing": ""
+  }
+]`;
+
+  document.getElementById("aiPromptOutput").value = prompt;
+}
+
+function copyAiPrompt(){
+  const text = document.getElementById("aiPromptOutput").value.trim();
+  if(!text){
+    generateAiPrompt();
+  }
+  const finalText = document.getElementById("aiPromptOutput").value.trim();
+  if(!finalText) return;
+  navigator.clipboard.writeText(finalText);
+  alert("已複製 AI 轉 JSON 指令！");
+}
+
+function clearAiPrompt(){
+  document.getElementById("vocusUrl").value = "";
+  document.getElementById("defaultCounty").value = "";
+  document.getElementById("defaultCrop").value = "";
+  document.getElementById("defaultX").value = "";
+  document.getElementById("defaultY").value = "";
+  document.getElementById("aiPromptOutput").value = "";
+}
+
 
 generateJson();
 </script>
