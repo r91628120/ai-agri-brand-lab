@@ -6,46 +6,151 @@
   <title>農人足跡地圖｜AI農創品牌實驗室</title>
   <meta name="description" content="農人足跡地圖，透過台灣地圖、農人故事卡與品牌案例，引導學生認識產地、作物、地方創生與農產品品牌。" />
   <style>
-    :root{--bg:#f7fbf6;--card:#fff;--ink:#123126;--muted:#5b7368;--green:#15915c;--green2:#e5f8ec;--line:#dbeadd;--shadow:0 18px 45px rgba(18,49,38,.10);--gold:#f59e0b}
-    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eefaf2 0%,var(--bg) 45%,#fff 100%)} a{text-decoration:none;color:inherit}
+    :root{--bg:#f7fbf6;--card:#fff;--ink:#123126;--muted:#5b7368;--green:#15915c;--line:#dbeadd;--shadow:0 18px 45px rgba(18,49,38,.10);--gold:#f59e0b}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;color:var(--ink);background:linear-gradient(180deg,#eefaf2 0%,var(--bg) 45%,#fff 100%)}
+    a{text-decoration:none;color:inherit}
     header{text-align:center;padding:46px 18px 34px;background:radial-gradient(circle at top,#e0f8e8 0%,#f7fbf6 66%)}
-    .top-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}.pill-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid #cfe8d8;background:#fff;color:#168153;font-weight:900;box-shadow:0 8px 20px rgba(21,145,92,.08)}
-    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:linear-gradient(135deg,#e9fff1,#dff7e9);color:#14804f;font-weight:900;margin-bottom:18px}.badge span{font-size:34px}
-    h1{font-size:clamp(34px,6vw,58px);line-height:1.12;margin:0 0 14px}.subtitle{max-width:880px;margin:0 auto;color:var(--muted);font-size:clamp(16px,2.4vw,21px);line-height:1.85}
-    main{max-width:1180px;margin:0 auto;padding:24px 18px 70px}.grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}@media(max-width:920px){.grid{grid-template-columns:1fr}}
-    .card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow)}h2{font-size:26px;margin:0 0 12px}h3{font-size:20px;margin:18px 0 8px}.muted{color:var(--muted);line-height:1.8}.small{font-size:13px;color:var(--muted);line-height:1.65}
-    .map-wrap{position:relative;min-height:600px;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 18%,rgba(34,197,94,.22),transparent 28%),linear-gradient(135deg,#e9fff1,#f8fffb);border:1px solid #cfe8d8}.taiwan-shape{position:absolute;left:50%;top:50%;width:250px;height:470px;transform:translate(-50%,-50%) rotate(18deg);border-radius:48% 52% 45% 55%/60% 45% 55% 40%;background:linear-gradient(160deg,#32b16c,#8fd14f);box-shadow:inset 0 0 35px rgba(255,255,255,.35),0 18px 45px rgba(21,145,92,.24);opacity:.92}.taiwan-shape:after{content:"TAIWAN";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);letter-spacing:.32em;color:rgba(255,255,255,.45);font-weight:900;font-size:28px}
-    .marker{position:absolute;display:flex;align-items:center;gap:8px;transform:translate(-50%,-50%);cursor:pointer;filter:drop-shadow(0 8px 16px rgba(18,49,38,.18))}.pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--green);display:grid;place-items:center;border:3px solid white}.pin span{transform:rotate(45deg);font-size:16px}.marker-label{background:#fff;border:1px solid #dbeadd;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:900;white-space:nowrap;color:#24563a}.marker.active .pin{background:var(--gold)}.marker.active .marker-label{background:#fff7df;color:#8a5a00;border-color:#fde68a}
-    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.filter{border:1px solid #cfe8d8;background:#fff;color:#168153;border-radius:999px;padding:9px 13px;font-weight:900;cursor:pointer}.filter.active{background:#168153;color:#fff}.story-card{border:1px solid #e2eee6;border-radius:22px;padding:16px;margin-top:12px;background:#fff;cursor:pointer;transition:.2s ease}.story-card:hover,.story-card.active{border-color:#8fd14f;transform:translateY(-2px);box-shadow:0 12px 26px rgba(18,49,38,.09)}.story-title{font-size:19px;font-weight:900;margin-bottom:6px}.tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#ecfdf5;color:#047857;font-weight:900;font-size:12px;margin:4px 4px 0 0}
-    .detail{margin-top:18px;background:linear-gradient(135deg,#f7fff9,#fff);border:1px solid #cfe8d8;border-radius:24px;padding:18px}.detail-title{font-size:25px;font-weight:900;margin-bottom:8px}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}@media(max-width:560px){.info-grid{grid-template-columns:1fr}}.info{background:#fff;border:1px solid #e3efe7;border-radius:16px;padding:12px}.info strong{display:block;color:#168153;margin-bottom:4px}.action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.action-row a,.action-row button{display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;padding:11px 14px;border-radius:14px;background:#168153;color:#fff;font-weight:900}.action-row .secondary{background:#fff;color:#168153;border:1px solid #cfe8d8}
-    .learning{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}@media(max-width:850px){.learning{grid-template-columns:1fr}}.learn-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}.learn-card h3{margin-top:0}footer{text-align:center;padding:32px 18px 48px;color:var(--muted);line-height:1.8}
+    .top-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:18px 0 0}
+    .pill-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid #cfe8d8;background:#fff;color:#168153;font-weight:900;box-shadow:0 8px 20px rgba(21,145,92,.08)}
+    .badge{display:inline-flex;align-items:center;gap:10px;padding:10px 20px;border-radius:999px;background:linear-gradient(135deg,#e9fff1,#dff7e9);color:#14804f;font-weight:900;margin-bottom:18px}
+    .badge span{font-size:34px}
+    h1{font-size:clamp(34px,6vw,58px);line-height:1.12;margin:0 0 14px}
+    h2{font-size:26px;margin:0 0 12px}
+    h3{font-size:20px;margin:18px 0 8px}
+    .subtitle{max-width:880px;margin:0 auto;color:var(--muted);font-size:clamp(16px,2.4vw,21px);line-height:1.85}
+    main{max-width:1180px;margin:0 auto;padding:24px 18px 70px}
+    .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:start}
+    @media(max-width:920px){.grid{grid-template-columns:1fr}}
+    .card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:var(--shadow)}
+    .muted{color:var(--muted);line-height:1.8}
+    .small{font-size:13px;color:var(--muted);line-height:1.65}
+    .map-wrap{position:relative;min-height:600px;border-radius:28px;overflow:hidden;background:radial-gradient(circle at 50% 18%,rgba(34,197,94,.22),transparent 28%),linear-gradient(135deg,#e9fff1,#f8fffb);border:1px solid #cfe8d8}
+    .taiwan-shape{position:absolute;left:50%;top:50%;width:250px;height:470px;transform:translate(-50%,-50%) rotate(18deg);border-radius:48% 52% 45% 55%/60% 45% 55% 40%;background:linear-gradient(160deg,#32b16c,#8fd14f);box-shadow:inset 0 0 35px rgba(255,255,255,.35),0 18px 45px rgba(21,145,92,.24);opacity:.92}
+    .taiwan-shape:after{content:"TAIWAN";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-90deg);letter-spacing:.32em;color:rgba(255,255,255,.45);font-weight:900;font-size:28px}
+    .marker{position:absolute;display:flex;align-items:center;gap:8px;transform:translate(-50%,-50%);cursor:pointer;filter:drop-shadow(0 8px 16px rgba(18,49,38,.18))}
+    .pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--green);display:grid;place-items:center;border:3px solid white}
+    .pin span{transform:rotate(45deg);font-size:16px}
+    .marker-label{background:#fff;border:1px solid #dbeadd;border-radius:999px;padding:7px 10px;font-size:13px;font-weight:900;white-space:nowrap;color:#24563a}
+    .marker.active .pin{background:var(--gold)}
+    .marker.active .marker-label{background:#fff7df;color:#8a5a00;border-color:#fde68a}
+    .filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+    .filter{border:1px solid #cfe8d8;background:#fff;color:#168153;border-radius:999px;padding:9px 13px;font-weight:900;cursor:pointer}
+    .filter.active{background:#168153;color:#fff}
+    .story-card{border:1px solid #e2eee6;border-radius:22px;padding:16px;margin-top:12px;background:#fff;cursor:pointer;transition:.2s ease}
+    .story-card:hover,.story-card.active{border-color:#8fd14f;transform:translateY(-2px);box-shadow:0 12px 26px rgba(18,49,38,.09)}
+    .story-title{font-size:19px;font-weight:900;margin-bottom:6px}
+    .tag{display:inline-block;padding:6px 10px;border-radius:999px;background:#ecfdf5;color:#047857;font-weight:900;font-size:12px;margin:4px 4px 0 0}
+    .detail{margin-top:18px;background:linear-gradient(135deg,#f7fff9,#fff);border:1px solid #cfe8d8;border-radius:24px;padding:18px}
+    .detail-title{font-size:25px;font-weight:900;margin-bottom:8px}
+    .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+    @media(max-width:560px){.info-grid{grid-template-columns:1fr}}
+    .info{background:#fff;border:1px solid #e3efe7;border-radius:16px;padding:12px}
+    .info strong{display:block;color:#168153;margin-bottom:4px}
+    .action-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .action-row a,.action-row button{display:inline-flex;align-items:center;justify-content:center;border:0;cursor:pointer;padding:11px 14px;border-radius:14px;background:#168153;color:#fff;font-weight:900}
+    .action-row .secondary{background:#fff;color:#168153;border:1px solid #cfe8d8}
+    .learning{margin-top:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    @media(max-width:850px){.learning{grid-template-columns:1fr}}
+    .learn-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
+    .learn-card h3{margin-top:0}
+    footer{text-align:center;padding:32px 18px 48px;color:var(--muted);line-height:1.8}
   </style>
 </head>
 <body>
   <header>
-    
-    <div class="badge"><span><h1>🌾</h1></span><h1> 農人足跡地圖</h1></div><h2>從一個地點，看見一位農人的故事</h2>
+    <div class="badge"><span>🌾</span><strong>農人足跡地圖</strong></div>
+    <h1>從一個地點，看見一位農人的故事</h1>
     <p class="subtitle">透過台灣地圖與農人故事卡，帶學生認識產地、作物、品牌精神與地方創生。農產品不只是價格，背後還有人、土地、氣候、技術與故事。</p>
-    <div class="top-actions"><a class="pill-btn" href="https://r91628120.github.io/ai-agri-brand-lab/">🚀 回 AI農創品牌實驗室</a><a class="pill-btn" href="https://r91628120.github.io/ai-agri-education/#home">🌱 回 AI農業教育平台</a></div>
+    <div class="top-actions">
+      <a class="pill-btn" href="https://r91628120.github.io/ai-agri-brand-lab/">🚀 回 AI農創品牌實驗室</a>
+      <a class="pill-btn" href="https://r91628120.github.io/ai-agri-education/#home">🌱 回 AI農業教育平台</a>
+    </div>
   </header>
+
   <main>
-    <section class="grid"><div class="card"><h2>🗺️ 台灣農人足跡地圖</h2><p class="muted">點選地圖標記或右側故事卡，查看農場、作物、品牌故事與學習重點。</p><div class="map-wrap" id="mapWrap"><div class="taiwan-shape"></div></div><p class="small">第一版為教學示意地圖。未來可升級為 Google Maps，並串接實際農場地址與 Vocus 品牌故事文章。</p></div><div class="card"><h2>📖 農人故事列表</h2><p class="muted">可依照縣市或作物分類，引導學生觀察不同產地如何建立品牌。</p><div class="filters" id="filters"></div><div id="storyList"></div></div></section>
+    <section class="grid">
+      <div class="card">
+        <h2>🗺️ 台灣農人足跡地圖</h2>
+        <p class="muted">點選地圖標記或右側故事卡，同一頁立即顯示農場、作物、品牌故事與學習重點，不跳出其他地圖頁面。</p>
+        <div class="map-wrap" id="mapWrap">
+          <div class="taiwan-shape"></div>
+        </div>
+        <p class="small">此版本採用 SVG 概念式台灣地圖，不使用 Google Maps API，不產生地圖費用；重點放在農人故事與課堂引導。</p>
+      </div>
+      <div class="card">
+        <h2>📖 農人故事列表</h2>
+        <p class="muted">可依照縣市或作物分類，引導學生觀察不同產地如何建立品牌。</p>
+        <div class="filters" id="filters"></div>
+        <div id="storyList"></div>
+      </div>
+    </section>
+
     <section class="detail" id="detailBox"></section>
-    <section class="learning"><div class="learn-card"><h3>課堂任務一：看見產地</h3><p class="muted">請學生選擇一位農人，查詢該地區的氣候、土壤、主要作物與交通位置。</p></div><div class="learn-card"><h3>課堂任務二：看見品牌</h3><p class="muted">分析這位農人的品牌特色：是品質、故事、友善耕作、加工產品，還是體驗活動？</p></div><div class="learn-card"><h3>課堂任務三：看見市場</h3><p class="muted">思考這個農產品可以賣給誰？如何包裝？如何拍照？如何寫社群文案？</p></div></section>
+
+    <section class="learning">
+      <div class="learn-card"><h3>課堂任務一：看見產地</h3><p class="muted">請學生選擇一位農人，查詢該地區的氣候、土壤、主要作物與交通位置。</p></div>
+      <div class="learn-card"><h3>課堂任務二：看見品牌</h3><p class="muted">分析這位農人的品牌特色：是品質、故事、友善耕作、加工產品，還是體驗活動？</p></div>
+      <div class="learn-card"><h3>課堂任務三：看見市場</h3><p class="muted">思考這個農產品可以賣給誰？如何包裝？如何拍照？如何寫社群文案？</p></div>
+    </section>
   </main>
+
   <footer><strong>🌾 農人足跡地圖｜AI農創品牌實驗室</strong><br>本頁為農業教育、品牌故事與地方創生教學用途。範例資料可依實際農場與學生訪談成果逐步替換。</footer>
+
 <script>
-const farmers=[{id:"mango-pingtung",name:"屏東獅子鄉芒果農場",farmer:"芒果青農",county:"屏東",crop:"愛文芒果",icon:"🥭",position:{x:48,y:82},theme:"山海交界的芒果故事",story:"位於屏東山海交界的芒果園，面對氣候變化、採收期壓力與市場價格波動，仍透過品質管理與品牌故事讓農產品被看見。",learning:"適合討論產地特色、氣候風險、品牌故事與青農返鄉。",link:"https://vocus.cc/article/6a1696c5fd89780001ad86c4"},
-               {id:"avocado-pingtung",name:"屏東酪梨農場",farmer:"酪梨農人",county:"屏東",crop:"酪梨",icon:"🥑",position:{x:43,y:76},theme:"從鮮果到飲品的加值想像",story:"酪梨具有鮮食、飲品與加工應用潛力，適合學生思考農產品如何從原料走向品牌商品。",learning:"適合連結包裝設計、產品開發、營養訴求與社群行銷。",link:"https://www.google.com/search?q=屏東+酪梨+青農"},
-               {id:"onion-hengchun",name:"恆春洋蔥農場",farmer:"恆春農友",county:"屏東",crop:"洋蔥",icon:"🧅",position:{x:51,y:89},theme:"風土條件與地方農產",story:"恆春半島的風與氣候孕育地方特色農產，洋蔥可作為學生理解產地品牌與地方節慶行銷的案例。",learning:"適合討論地方特產、節慶行銷、農產品加工與伴手禮設計。",link:"https://www.google.com/search?q=恆春+洋蔥+農產品"},
-               {id:"tea-nantou",name:"南投茶園",farmer:"高山茶農",county:"南投",crop:"茶葉",icon:"🍵",position:{x:53,y:46},theme:"海拔、氣候與品牌價值",story:"茶葉品牌常與海拔、產區、製茶技術與職人精神連結，是農產品品牌化的典型案例。",learning:"適合討論產區分級、品牌包裝、感官描述與伴手禮市場。",link:"https://www.google.com/search?q=南投+茶園+品牌故事"},
-               {id:"coffee-yunlin",name:"雲林古坑咖啡農場",farmer:"咖啡農人",county:"雲林",crop:"咖啡",icon:"☕",position:{x:46,y:40},theme:"從作物到體驗經濟",story:"咖啡不只是一項農產品，也能延伸為烘焙、杯測、農場導覽與地方旅遊體驗。",learning:"適合討論農場體驗活動設計、品牌故事與高附加價值商品。",link:"https://www.google.com/search?q=古坑+咖啡+農場+故事"},
-               {id:"rice-taitung",name:"台東池上米農場",farmer:"稻米農人",county:"台東",crop:"稻米",icon:"🌾",position:{x:68,y:62},theme:"一碗米背後的產地品牌",story:"池上米代表產地品牌、品質管理與地方形象的結合，適合引導學生理解農產品如何累積信任。",learning:"適合討論產地認證、品牌信任、包裝設計與地方觀光。",link:"https://www.google.com/search?q=池上米+品牌故事"}];
-let activeCounty="全部";let activeId=farmers[0].id;function uniqueCounties(){return["全部",...Array.from(new Set(farmers.map(f=>f.county)))]}function renderFilters(){document.getElementById("filters").innerHTML=uniqueCounties().map(c=>`<button class="filter ${c===activeCounty?'active':''}" onclick="setCounty('${c}')">${c}</button>`).join("")}function setCounty(c){activeCounty=c;const rows=getFiltered();if(rows.length)activeId=rows[0].id;render()}function getFiltered(){return activeCounty==="全部"?farmers:farmers.filter(f=>f.county===activeCounty)}
-function renderMap(){const map=document.getElementById("mapWrap");map.querySelectorAll(".marker").forEach(n=>n.remove());getFiltered().forEach(f=>{const el=document.createElement("div");el.className="marker "+(f.id===activeId?"active":"");el.style.left=f.position.x+"%";el.style.top=f.position.y+"%";el.onclick=()=>{activeId=f.id;render()};el.innerHTML=`<div class="pin"><span>${f.icon}</span></div><div class="marker-label">${f.county}｜${f.crop}</div>`;map.appendChild(el)})}
-function renderList(){document.getElementById("storyList").innerHTML=getFiltered().map(f=>`<div class="story-card ${f.id===activeId?'active':''}" onclick="activeId='${f.id}';render();"><div class="story-title">${f.icon} ${f.name}</div><div class="small">${f.theme}</div><span class="tag">${f.county}</span><span class="tag">${f.crop}</span></div>`).join("")}function selectedFarmer(){return farmers.find(f=>f.id===activeId)||getFiltered()[0]||farmers[0]}
-function renderDetail(){const f=selectedFarmer();document.getElementById("detailBox").innerHTML=`<div class="detail-title">${f.icon} ${f.name}</div><p class="muted">${f.story}</p><div class="info-grid"><div class="info"><strong>縣市</strong>${f.county}</div><div class="info"><strong>主要作物</strong>${f.crop}</div><div class="info"><strong>農人／角色</strong>${f.farmer}</div><div class="info"><strong>品牌主題</strong>${f.theme}</div></div><h3>AI課堂引導問題</h3><ul class="muted"><li>這個產地的氣候或地理條件，如何影響農產品品質？</li><li>這位農人的品牌故事可以如何被整理成100字介紹？</li><li>如果要替這項農產品設計包裝，應該強調什麼特色？</li><li>如果要設計農場體驗活動，可以安排哪些流程？</li></ul><p class="small"><strong>學習重點：</strong>${f.learning}</p><div class="action-row"><a target="_blank" href="${f.link}">閱讀／搜尋故事 →</a><button class="secondary" onclick="copyPrompt()">複製AI訪談指令</button></div>`}
-function copyPrompt(){const f=selectedFarmer();const prompt=`請協助我以高中職學生能理解的方式，整理「${f.name}」的農人品牌故事。請包含：1. 產地特色 2. 主要作物 3. 農人面臨的挑戰 4. 品牌故事亮點 5. 可延伸的包裝設計、商品攝影與農場體驗活動建議。`;navigator.clipboard.writeText(prompt);alert("已複製AI訪談指令！")}function render(){renderFilters();renderMap();renderList();renderDetail()}render();
+const farmers=[
+  {id:"mango-pingtung",name:"屏東獅子鄉芒果農場",farmer:"芒果青農",county:"屏東",crop:"愛文芒果",icon:"🥭",position:{x:48,y:82},theme:"山海交界的芒果故事",story:"位於屏東山海交界的芒果園，面對氣候變化、採收期壓力與市場價格波動，仍透過品質管理與品牌故事讓農產品被看見。",learning:"適合討論產地特色、氣候風險、品牌故事與青農返鄉。",link:"https://vocus.cc/article/6a1696c5fd89780001ad86c4",productIdea:"芒果禮盒、芒果乾、芒果果醬、夏季採果體驗。",customer:"都市家庭、企業送禮、親子旅遊與喜歡產地直送的消費者。",marketing:"山海交界、季節限定、精品芒果、青農返鄉故事。"},
+  {id:"avocado-pingtung",name:"屏東酪梨農場",farmer:"酪梨農人",county:"屏東",crop:"酪梨",icon:"🥑",position:{x:43,y:76},theme:"從鮮果到飲品的加值想像",story:"酪梨具有鮮食、飲品與加工應用潛力，適合學生思考農產品如何從原料走向品牌商品。",learning:"適合連結包裝設計、產品開發、營養訴求與社群行銷。",link:"https://www.google.com/search?q=屏東+酪梨+青農",productIdea:"酪梨鮮果、酪梨豆漿飲、酪梨抹醬、健康禮盒。",customer:"重視健康飲食、健身族群、親子家庭與飲品開發課程。",marketing:"健康營養、在地鮮果、飲品加值、從產地到餐桌。"},
+  {id:"onion-hengchun",name:"恆春洋蔥農場",farmer:"恆春農友",county:"屏東",crop:"洋蔥",icon:"🧅",position:{x:51,y:89},theme:"風土條件與地方農產",story:"恆春半島的風與氣候孕育地方特色農產，洋蔥可作為學生理解產地品牌與地方節慶行銷的案例。",learning:"適合討論地方特產、節慶行銷、農產品加工與伴手禮設計。",link:"https://www.google.com/search?q=恆春+洋蔥+農產品",productIdea:"洋蔥禮盒、洋蔥湯包、洋蔥醬、地方伴手禮。",customer:"家庭料理族群、觀光伴手禮市場、地方特產消費者。",marketing:"恆春風土、地方特產、料理應用、節慶行銷。"},
+  {id:"tea-nantou",name:"南投茶園",farmer:"高山茶農",county:"南投",crop:"茶葉",icon:"🍵",position:{x:53,y:46},theme:"海拔、氣候與品牌價值",story:"茶葉品牌常與海拔、產區、製茶技術與職人精神連結，是農產品品牌化的典型案例。",learning:"適合討論產區分級、品牌包裝、感官描述與伴手禮市場。",link:"https://www.google.com/search?q=南投+茶園+品牌故事",productIdea:"茶葉禮盒、冷泡茶包、茶香體驗課程、茶點組合。",customer:"送禮市場、茶文化愛好者、觀光客與企業禮盒客群。",marketing:"海拔風味、職人製茶、產區故事、感官體驗。"},
+  {id:"coffee-yunlin",name:"雲林古坑咖啡農場",farmer:"咖啡農人",county:"雲林",crop:"咖啡",icon:"☕",position:{x:46,y:40},theme:"從作物到體驗經濟",story:"咖啡不只是一項農產品，也能延伸為烘焙、杯測、農場導覽與地方旅遊體驗。",learning:"適合討論農場體驗活動設計、品牌故事與高附加價值商品。",link:"https://www.google.com/search?q=古坑+咖啡+農場+故事",productIdea:"咖啡豆、濾掛咖啡、杯測體驗、農場導覽。",customer:"咖啡愛好者、文青族群、地方旅遊與體驗經濟客群。",marketing:"從作物到杯測、烘焙職人、農場體驗、高附加價值。"},
+  {id:"rice-taitung",name:"台東池上米農場",farmer:"稻米農人",county:"台東",crop:"稻米",icon:"🌾",position:{x:68,y:62},theme:"一碗米背後的產地品牌",story:"池上米代表產地品牌、品質管理與地方形象的結合，適合引導學生理解農產品如何累積信任。",learning:"適合討論產地認證、品牌信任、包裝設計與地方觀光。",link:"https://www.google.com/search?q=池上米+品牌故事",productIdea:"米禮盒、米餅、飯糰體驗、產地餐桌活動。",customer:"家庭主婦、送禮市場、食農教育與地方旅遊客群。",marketing:"產地信任、米食文化、品質管理、地方觀光。"}
+];
+
+let activeCounty="全部";
+let activeId=farmers[0].id;
+
+function uniqueCounties(){return["全部",...Array.from(new Set(farmers.map(f=>f.county)))]}
+function getFiltered(){return activeCounty==="全部"?farmers:farmers.filter(f=>f.county===activeCounty)}
+function selectedFarmer(){return farmers.find(f=>f.id===activeId)||getFiltered()[0]||farmers[0]}
+
+function renderFilters(){
+  document.getElementById("filters").innerHTML=uniqueCounties().map(c=>`<button class="filter ${c===activeCounty?'active':''}" onclick="setCounty('${c}')">${c}</button>`).join("");
+}
+function setCounty(c){
+  activeCounty=c;
+  const rows=getFiltered();
+  if(rows.length)activeId=rows[0].id;
+  render();
+}
+function renderMap(){
+  const map=document.getElementById("mapWrap");
+  map.querySelectorAll(".marker").forEach(n=>n.remove());
+  getFiltered().forEach(f=>{
+    const el=document.createElement("div");
+    el.className="marker "+(f.id===activeId?"active":"");
+    el.style.left=f.position.x+"%";
+    el.style.top=f.position.y+"%";
+    el.onclick=()=>{activeId=f.id;render()};
+    el.innerHTML=`<div class="pin"><span>${f.icon}</span></div><div class="marker-label">${f.county}｜${f.crop}</div>`;
+    map.appendChild(el);
+  });
+}
+function renderList(){
+  document.getElementById("storyList").innerHTML=getFiltered().map(f=>`<div class="story-card ${f.id===activeId?'active':''}" onclick="activeId='${f.id}';render();"><div class="story-title">${f.icon} ${f.name}</div><div class="small">${f.theme}</div><span class="tag">${f.county}</span><span class="tag">${f.crop}</span></div>`).join("");
+}
+function renderDetail(){
+  const f=selectedFarmer();
+  document.getElementById("detailBox").innerHTML=`<div class="detail-title">${f.icon} ${f.name}</div><p class="muted">${f.story}</p><div class="info-grid"><div class="info"><strong>縣市</strong>${f.county}</div><div class="info"><strong>主要作物</strong>${f.crop}</div><div class="info"><strong>農人／角色</strong>${f.farmer}</div><div class="info"><strong>品牌主題</strong>${f.theme}</div></div><h3>🤖 AI品牌分析</h3><div class="info-grid"><div class="info"><strong>品牌定位</strong>${f.theme}</div><div class="info"><strong>可延伸商品</strong>${f.productIdea}</div><div class="info"><strong>適合客群</strong>${f.customer}</div><div class="info"><strong>行銷切入點</strong>${f.marketing}</div></div><h3>AI課堂引導問題</h3><ul class="muted"><li>這個產地的氣候或地理條件，如何影響農產品品質？</li><li>這位農人的品牌故事可以如何被整理成100字介紹？</li><li>如果要替這項農產品設計包裝，應該強調什麼特色？</li><li>如果要設計農場體驗活動，可以安排哪些流程？</li></ul><p class="small"><strong>學習重點：</strong>${f.learning}</p><div class="action-row"><a target="_blank" href="${f.link}">閱讀完整青農故事 →</a><button class="secondary" onclick="copyPrompt()">複製AI訪談指令</button></div>`;
+}
+function copyPrompt(){
+  const f=selectedFarmer();
+  const prompt=`請協助我以高中職學生能理解的方式，整理「${f.name}」的農人品牌故事。請包含：1. 產地特色 2. 主要作物 3. 農人面臨的挑戰 4. 品牌故事亮點 5. 可延伸的包裝設計、商品攝影與農場體驗活動建議。`;
+  navigator.clipboard.writeText(prompt);
+  alert("已複製AI訪談指令！");
+}
+function render(){renderFilters();renderMap();renderList();renderDetail()}
+render();
 </script>
 </body>
 </html>
