@@ -336,10 +336,26 @@
 
       <div class="actions">
         <button class="blue" onclick="parseAiJsonToForm()">解析並填入表單</button>
-        <button onclick="addAiJsonToFarmers()">加入目前 farmers.json</button>
-        <button class="secondary" onclick="copyMergedJson()">複製目前 farmers.json</button>
-        <button class="gold" onclick="downloadMergedJson()">下載更新版 farmers.json</button>
-        <button class="danger" onclick="clearAiJson()">清除貼回區</button>
+
+        <button onclick="addAiJsonToFarmers()">
+          加入目前 farmers.json
+        </button>
+
+        <button class="secondary" onclick="copyMergedJson()">
+          複製目前 farmers.json
+        </button>
+
+        <button class="gold" onclick="downloadMergedJson()">
+          下載更新版 farmers.json
+        </button>
+
+        <button class="danger" onclick="clearAiJson()">
+          清除貼回區
+        </button>
+
+        <button class="danger" onclick="clearFarmersJson()">
+           🗑️ 清空 farmers.json
+        </button>
       </div>
 
       <div class="notice" id="jsonStatus">目前尚未加入新資料。</div>
@@ -451,6 +467,9 @@
         <div class="step"><strong>③ 產生 AI 指令</strong><p class="muted">複製到 ChatGPT 取得 JSON。</p></div>
         <div class="step"><strong>④ 貼回 JSON</strong><p class="muted">貼回本頁，自動檢查與回填。</p></div>
         <div class="step"><strong>⑤ 加入地圖資料</strong><p class="muted">下載 farmers.json，更新農人足跡地圖。</p></div>
+        <button class="danger" onclick="resetAll()">
+          ♻️ 全部重置
+        </button>
       </div>
     </section>
   </main>
@@ -808,6 +827,47 @@ function clearAiJson(){
   setValue("aiJsonInput", "");
   document.getElementById("jsonStatus").textContent = "已清除貼回區。";
 }
+
+function clearFarmersJson(){
+
+  if(!confirm("確定要清空目前 farmers.json 嗎？")){
+    return;
+  }
+
+  mergedFarmers = [];
+
+  document.getElementById("output").textContent = "";
+
+  document.getElementById("preview").innerHTML = "";
+
+  document.getElementById("jsonStatus").textContent =
+    "已清空 farmers.json，目前為 0 筆資料。";
+
+}
+
+function resetAll(){
+
+  if(!confirm("確定要全部重置嗎？")){
+      return;
+  }
+
+  mergedFarmers = [];
+
+  clearForm();
+
+  clearAiJson();
+
+  clearAiPrompt();
+
+  document.getElementById("output").textContent="";
+
+  document.getElementById("preview").innerHTML="";
+
+  document.getElementById("jsonStatus").textContent =
+    "已全部重置。";
+
+} 
+
 
 generateJson();
 </script>
