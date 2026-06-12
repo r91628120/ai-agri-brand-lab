@@ -111,17 +111,12 @@
   <footer><strong>🌾 農人足跡地圖｜AI農創品牌實驗室</strong><br>本頁為農業教育、品牌故事與地方創生教學用途。範例資料可依實際農場與學生訪談成果逐步替換。</footer>
 
 <script>
-const farmers=[
-  {id:"mango-pingtung",name:"屏東獅子鄉芒果農場",farmer:"芒果青農",county:"屏東",crop:"愛文芒果",icon:"🥭",position:{x:48,y:82},theme:"山海交界的芒果故事",story:"位於屏東山海交界的芒果園，面對氣候變化、採收期壓力與市場價格波動，仍透過品質管理與品牌故事讓農產品被看見。",learning:"適合討論產地特色、氣候風險、品牌故事與青農返鄉。",link:"https://vocus.cc/article/6a1696c5fd89780001ad86c4",productIdea:"芒果禮盒、芒果乾、芒果果醬、夏季採果體驗。",customer:"都市家庭、企業送禮、親子旅遊與喜歡產地直送的消費者。",marketing:"山海交界、季節限定、精品芒果、青農返鄉故事。"},
-  {id:"avocado-pingtung",name:"屏東酪梨農場",farmer:"酪梨農人",county:"屏東",crop:"酪梨",icon:"🥑",position:{x:43,y:76},theme:"從鮮果到飲品的加值想像",story:"酪梨具有鮮食、飲品與加工應用潛力，適合學生思考農產品如何從原料走向品牌商品。",learning:"適合連結包裝設計、產品開發、營養訴求與社群行銷。",link:"https://www.google.com/search?q=屏東+酪梨+青農",productIdea:"酪梨鮮果、酪梨豆漿飲、酪梨抹醬、健康禮盒。",customer:"重視健康飲食、健身族群、親子家庭與飲品開發課程。",marketing:"健康營養、在地鮮果、飲品加值、從產地到餐桌。"},
-  {id:"onion-hengchun",name:"恆春洋蔥農場",farmer:"恆春農友",county:"屏東",crop:"洋蔥",icon:"🧅",position:{x:51,y:89},theme:"風土條件與地方農產",story:"恆春半島的風與氣候孕育地方特色農產，洋蔥可作為學生理解產地品牌與地方節慶行銷的案例。",learning:"適合討論地方特產、節慶行銷、農產品加工與伴手禮設計。",link:"https://www.google.com/search?q=恆春+洋蔥+農產品",productIdea:"洋蔥禮盒、洋蔥湯包、洋蔥醬、地方伴手禮。",customer:"家庭料理族群、觀光伴手禮市場、地方特產消費者。",marketing:"恆春風土、地方特產、料理應用、節慶行銷。"},
-  {id:"tea-nantou",name:"南投茶園",farmer:"高山茶農",county:"南投",crop:"茶葉",icon:"🍵",position:{x:53,y:46},theme:"海拔、氣候與品牌價值",story:"茶葉品牌常與海拔、產區、製茶技術與職人精神連結，是農產品品牌化的典型案例。",learning:"適合討論產區分級、品牌包裝、感官描述與伴手禮市場。",link:"https://www.google.com/search?q=南投+茶園+品牌故事",productIdea:"茶葉禮盒、冷泡茶包、茶香體驗課程、茶點組合。",customer:"送禮市場、茶文化愛好者、觀光客與企業禮盒客群。",marketing:"海拔風味、職人製茶、產區故事、感官體驗。"},
-  {id:"coffee-yunlin",name:"雲林古坑咖啡農場",farmer:"咖啡農人",county:"雲林",crop:"咖啡",icon:"☕",position:{x:46,y:40},theme:"從作物到體驗經濟",story:"咖啡不只是一項農產品，也能延伸為烘焙、杯測、農場導覽與地方旅遊體驗。",learning:"適合討論農場體驗活動設計、品牌故事與高附加價值商品。",link:"https://www.google.com/search?q=古坑+咖啡+農場+故事",productIdea:"咖啡豆、濾掛咖啡、杯測體驗、農場導覽。",customer:"咖啡愛好者、文青族群、地方旅遊與體驗經濟客群。",marketing:"從作物到杯測、烘焙職人、農場體驗、高附加價值。"},
-  {id:"rice-taitung",name:"台東池上米農場",farmer:"稻米農人",county:"台東",crop:"稻米",icon:"🌾",position:{x:68,y:62},theme:"一碗米背後的產地品牌",story:"池上米代表產地品牌、品質管理與地方形象的結合，適合引導學生理解農產品如何累積信任。",learning:"適合討論產地認證、品牌信任、包裝設計與地方觀光。",link:"https://www.google.com/search?q=池上米+品牌故事",productIdea:"米禮盒、米餅、飯糰體驗、產地餐桌活動。",customer:"家庭主婦、送禮市場、食農教育與地方旅遊客群。",marketing:"產地信任、米食文化、品質管理、地方觀光。"}
-];
 
-let activeCounty="全部";
-let activeId=farmers[0].id;
+let farmers = [];
+
+let activeCounty = "全部";
+let activeId = null;
+
 
 function uniqueCounties(){return["全部",...Array.from(new Set(farmers.map(f=>f.county)))]}
 function getFiltered(){return activeCounty==="全部"?farmers:farmers.filter(f=>f.county===activeCounty)}
@@ -162,8 +157,22 @@ function copyPrompt(){
   navigator.clipboard.writeText(prompt);
   alert("已複製AI訪談指令！");
 }
+
+async function loadFarmers() {
+
+  const response = await fetch("farmers.json");
+
+  farmers = await response.json();
+
+  activeId = farmers[0].id;
+
+  render();
+
+}
+
+
 function render(){renderFilters();renderMap();renderList();renderDetail()}
-render();
+loadFarmers();
 </script>
 </body>
 </html>
