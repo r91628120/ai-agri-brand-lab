@@ -37,6 +37,14 @@
     .path{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}@media(max-width:900px){.path{grid-template-columns:1fr}}
     .step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;text-align:center}.step b{display:block;margin-top:6px}.preview{max-width:100%;border-radius:18px;border:1px solid var(--line);display:none;margin-top:12px}.notice{background:#fff7ed;border:1px solid #fed7aa;color:#8a3d04;border-radius:18px;padding:14px;line-height:1.7}
     .other-field{margin-top:12px;background:#f7fbf8;border:1px dashed #b9d9c5;border-radius:16px;padding:12px}.other-field .row{gap:8px}.other-field label{margin:0;font-weight:900}.other-field input[type=checkbox]{width:auto}.other-field input[type=text]{margin-top:8px}
+    .action-btn{
+       display:flex;
+       justify-content:center;
+       align-items:center;
+       text-align:center;
+       min-width:220px;
+       height:46px;
+    }
   </style>
 </head>
 <body>
@@ -112,10 +120,20 @@
         <h2>④ 一鍵產生 GPT 指令</h2>
         <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 AI農創教練，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
         <div class="row">
-          <button onclick="generatePrompt()">產生GPT指令</button>
-          <button class="secondary" onclick="copyPrompt()">複製指令</button>
-          <a class="linkbtn secondary" target="_blank" href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach">開啟 AI農創教練</a>
-          <button class="secondary" onclick="generateSample()">產生範例成果</button></div>
+          <button class="action-btn" onclick="generatePrompt()">產生GPT指令</button>
+  
+          <button class="secondary action-btn"
+                  onclick="copyPrompt()">複製指令</button>
+
+            <a class="linkbtn secondary action-btn"
+               target="_blank"
+               href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach">
+                        開啟 AI農創教練
+            </a>
+
+          <button class="secondary action-btn"
+              onclick="generateSample()">產生範例成果</button>
+        </div>
         <div id="output" class="output mt">請先按「產生GPT指令」。</div>
       </div>
 
