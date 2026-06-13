@@ -83,7 +83,7 @@
         <label>上傳手繪地圖／空拍照片／場域平面圖</label>
         <input type="file" id="mapImage" accept="image/*" onchange="previewImage(event)">
         <img id="preview" class="preview" alt="場域圖片預覽">
-        <p class="small">提醒：網頁本身先協助學生整理規劃資料與GPT指令；真正的圖片理解與場域布置圖生成，可交給GPT助理搭配學生上傳的手繪圖或空拍圖完成。</p>
+        <p class="small">提醒：網頁本身先協助學生整理規劃資料與GPT指令；真正的圖片理解與場域布置圖生成，可交給AI農創教練搭配學生上傳的手繪圖或空拍圖完成。</p>
       </div>
 
       <div class="card span-5">
@@ -110,8 +110,12 @@
 
       <div class="card span-12" id="prompt">
         <h2>④ 一鍵產生 GPT 指令</h2>
-        <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 GPT 助理，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
-        <div class="row"><button onclick="generatePrompt()">產生GPT指令</button><button class="secondary" onclick="copyPrompt()">複製指令</button><button class="secondary" onclick="generateAgriAssistantPrompt()">AI農創助理</button><button class="secondary" onclick="generateSample()">產生範例成果</button></div>
+        <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 AI農創教練，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
+        <div class="row">
+          <button onclick="generatePrompt()">產生GPT指令</button>
+          <button class="secondary" onclick="copyPrompt()">複製指令</button>
+          <a class="linkbtn secondary" target="_blank" href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach">開啟 AI農創教練</a>
+          <button class="secondary" onclick="generateSample()">產生範例成果</button></div>
         <div id="output" class="output mt">請先按「產生GPT指令」。</div>
       </div>
 
