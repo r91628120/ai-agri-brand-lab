@@ -63,6 +63,119 @@
     .learn-card{background:#fff;border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow)}
     .learn-card h3{margin-top:0}
     footer{text-align:center;padding:32px 18px 48px;color:var(--muted);line-height:1.8}
+    .site-footer{
+      margin-top:24px;
+      padding:0 18px 52px;
+      color:var(--ink);
+    }
+    .footer-inner{
+      max-width:1180px;
+      margin:0 auto;
+      background:linear-gradient(135deg,rgba(255,255,255,.96),#f3fff7);
+      border:1px solid var(--line);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      padding:26px;
+      text-align:left;
+    }
+    .footer-brand{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:start;
+      margin-bottom:20px;
+    }
+    @media(max-width:850px){.footer-brand{grid-template-columns:1fr}}
+    .footer-title{
+      font-size:28px;
+      font-weight:900;
+      margin-bottom:8px;
+      color:#0f6b45;
+    }
+    .footer-subtitle{
+      color:var(--muted);
+      line-height:1.85;
+      margin:0;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    @media(max-width:1000px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.footer-grid{grid-template-columns:1fr}}
+    .footer-box{
+      background:#fff;
+      border:1px solid #e2eee6;
+      border-radius:22px;
+      padding:16px;
+      min-height:170px;
+    }
+    .footer-box h3{
+      margin:0 0 10px;
+      font-size:18px;
+      color:#123126;
+    }
+    .footer-box ul{
+      margin:0;
+      padding-left:20px;
+      color:var(--muted);
+      line-height:1.85;
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-top:12px;
+    }
+    .footer-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:#168153;
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+    }
+    .footer-link.secondary{
+      background:#fff;
+      color:#168153;
+      border:1px solid #cfe8d8;
+    }
+    .footer-link.disabled{
+      background:#f1f5f9;
+      color:#64748b;
+      border:1px dashed #cbd5e1;
+      cursor:not-allowed;
+    }
+
+    .footer-link.admin-link{
+      background:#f8fafc;
+      color:#64748b;
+      border:1px dashed #cbd5e1;
+      font-size:13px;
+      opacity:.75;
+    }
+
+    .footer-link.admin-link:hover{
+      opacity:1;
+      color:#168153;
+      border-color:#cfe8d8;
+    }
+
+    .footer-note{
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px solid #dbeadd;
+      color:var(--muted);
+      text-align:center;
+      line-height:1.8;
+      font-size:14px;
+    }
   </style>
 </head>
 <body>
@@ -108,7 +221,81 @@
     </section>
   </main>
 
-  <footer><strong>🌾 農人足跡地圖｜AI農創品牌實驗室</strong><br>本頁為農業教育、品牌故事與地方創生教學用途。範例資料可依實際農場與學生訪談成果逐步替換。</footer>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div>
+          <div class="footer-title">🌾 農人足跡地圖</div>
+          <p class="footer-subtitle">
+            從一個地點，看見一位農人的故事。透過農人故事、產地文化與品牌案例，
+            帶領學生認識農業生產、地方創生、品牌行銷與永續發展。
+          </p>
+        </div>
+        <div>
+          <strong>AI農創品牌實驗室學習路徑</strong>
+          <div class="footer-links">
+            <a class="footer-link" href="https://r91628120.github.io/ai-agri-platform/stories/">📖 青農故事平台</a>
+            <span class="footer-link disabled">🎨 AI包裝設計師｜規劃中</span>
+            <span class="footer-link disabled">📸 AI農產品攝影師｜規劃中</span>
+            <span class="footer-link disabled">💰 創業模擬器｜規劃中</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-box">
+          <h3>🎓 課程應用</h3>
+          <ul>
+            <li>農創生產與行銷</li>
+            <li>農業概論</li>
+            <li>地方創生課程</li>
+            <li>專題實作與學習歷程</li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>🤖 AI課堂挑戰</h3>
+          <ul>
+            <li>分析產地特色</li>
+            <li>整理品牌故事</li>
+            <li>發想包裝設計</li>
+            <li>規劃商品攝影與行銷</li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>🚀 即將串接</h3>
+          <ul>
+            <li>AI農產品包裝設計師</li>
+            <li>AI農產品攝影師</li>
+            <li>AI農產品創業模擬器</li>
+            <li>AI農產品大數據教學平台</li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <h3>🎲 未來延伸</h3>
+          <ul>
+            <li>AI農業大富翁</li>
+            <li>台灣農業故事地圖</li>
+            <li>學生作品展示中心</li>
+            <li>青農品牌案例資料庫</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-links" style="justify-content:center;margin-top:20px;">
+        <a class="footer-link" href="https://r91628120.github.io/ai-agri-brand-lab/">🚀 回 AI農創品牌實驗室</a>
+        <a class="footer-link secondary" href="https://r91628120.github.io/ai-agri-education/#home">🌱 回 AI農業教育平台</a>
+        <a class="footer-link admin-link" href="farmer-json-maker.html">
+           🧾 教師資料建置工具
+        </a>
+      </div>
+
+      <div class="footer-note">
+        <strong>🌾 農人足跡地圖｜AI農創品牌實驗室</strong><br>
+        本頁為農業教育、品牌故事與地方創生教學用途。範例資料可依實際農場、學生訪談成果與 Vocus 青農故事逐步替換。
+        AI 產生內容仍需教師與學生查證、修正與再創作。教師資料建置工具僅供管理者整理農人故事資料使用。
+      </div>
+    </div>
+  </footer>
 
 <script>
 
