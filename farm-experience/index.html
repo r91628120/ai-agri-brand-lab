@@ -1,1 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI農場體驗與食農教育設計師｜休閒農場場域規劃</title>
+  <style>
+    :root{
+      --bg:#f6fbf7;--card:#ffffff;--ink:#143123;--muted:#5f7669;
+      --green:#22945b;--green2:#e4f7eb;--orange:#f97316;--orange2:#fff0e5;
+      --blue:#0ea5e9;--blue2:#e8f7ff;--gold:#f4b400;--gold2:#fff6d9;
+      --purple:#8b5cf6;--purple2:#f0e9ff;--line:#d8eadf;--shadow:0 18px 45px rgba(20,49,35,.10);
+    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}
+    body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;background:linear-gradient(180deg,#eef9f1 0%,var(--bg) 50%,#fff 100%);color:var(--ink)}
+    header{padding:54px 20px 34px;text-align:center;background:radial-gradient(circle at top,#e1f7e9 0%,#f6fbf7 62%)}
+    .badge{display:inline-flex;gap:8px;align-items:center;background:var(--green2);color:var(--green);padding:10px 18px;border-radius:999px;font-weight:900;margin-bottom:14px}
+    h1{font-size:clamp(34px,6vw,58px);line-height:1.12;margin:0 0 14px;letter-spacing:.02em}
+    .subtitle{font-size:clamp(16px,3vw,22px);color:var(--muted);max-width:920px;margin:0 auto 20px;line-height:1.8}
+    .wrap{max-width:1180px;margin:0 auto;padding:18px 18px 70px}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:26px;padding:24px;box-shadow:var(--shadow)}
+    .span-3{grid-column:span 3}.span-4{grid-column:span 4}.span-5{grid-column:span 5}.span-6{grid-column:span 6}.span-7{grid-column:span 7}.span-8{grid-column:span 8}.span-12{grid-column:span 12}
+    @media(max-width:950px){.span-3,.span-4,.span-5,.span-6,.span-7,.span-8{grid-column:span 12}.card{padding:19px}}
+    h2{margin:0 0 12px;font-size:26px}h3{margin:16px 0 8px;font-size:19px}.muted{color:var(--muted);line-height:1.75}.small{font-size:13px;color:var(--muted);line-height:1.7}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.row>*{flex:1}.hero-actions{justify-content:center;margin-top:22px}.hero-actions>*{flex:0 1 auto}.mt{margin-top:16px}
+    .linkbtn,button{display:inline-block;text-decoration:none;border:0;border-radius:16px;background:var(--green);color:white;font-weight:900;padding:13px 18px;font-size:16px;cursor:pointer;box-shadow:0 8px 18px rgba(47,143,91,.22)}
+    button.secondary,.linkbtn.secondary{background:#fff;color:var(--green);border:1px solid #cde6d5;box-shadow:none}
+    label{display:block;font-weight:900;margin:14px 0 7px}input,select,textarea{width:100%;padding:12px 13px;border:1px solid #c8dbce;border-radius:15px;font-size:16px;background:#fff;color:var(--ink)}textarea{min-height:115px;resize:vertical;line-height:1.7}
+    .feature{position:relative;overflow:hidden;min-height:290px}.feature:before{content:"";position:absolute;right:-35px;top:-35px;width:130px;height:130px;border-radius:999px;background:var(--green2)}
+    .feature.orange{border-top:6px solid var(--orange)}.feature.orange:before{background:var(--orange2)}.feature.purple{border-top:6px solid var(--purple)}.feature.purple:before{background:var(--purple2)}.feature.blue{border-top:6px solid var(--blue)}.feature.blue:before{background:var(--blue2)}.feature.gold{border-top:6px solid var(--gold)}.feature.gold:before{background:var(--gold2)}.feature.green{border-top:6px solid var(--green)}
+    .icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:30px;color:white;background:var(--green);box-shadow:0 12px 25px rgba(34,148,91,.18);position:relative;z-index:1}.orange .icon{background:var(--orange)}.purple .icon{background:var(--purple)}.blue .icon{background:var(--blue)}.gold .icon{background:var(--gold)}
+    .tag{display:inline-block;padding:7px 10px;border-radius:999px;background:#f3faf6;color:#17623d;font-weight:800;font-size:13px;margin:4px 4px 0 0}.tag.dark{background:#14243a;color:#fff}
+    .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-top:10px}@media(max-width:680px){.checks{grid-template-columns:1fr}}
+    .check{display:flex;align-items:center;gap:8px;background:#f7fbf8;border:1px solid #e1eee5;border-radius:14px;padding:10px;font-weight:700}.check input{width:auto;margin:0}.check span{line-height:1.35}
+    .mode-tabs{display:flex;gap:8px;flex-wrap:wrap}.mode{padding:10px 13px;border-radius:999px;background:#f1f7f3;color:var(--muted);font-weight:900;cursor:pointer;border:1px solid #e0eee5}.mode.active{background:var(--green);color:#fff}
+    .output{white-space:pre-wrap;background:#f4faf6;border:1px solid #cfe6d7;border-radius:20px;padding:18px;line-height:1.75;min-height:220px}.quote{font-size:21px;font-weight:900;line-height:1.55;background:linear-gradient(135deg,#e8f7ee,#fff);border-left:6px solid var(--green);padding:18px;border-radius:18px}
+    .path{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}@media(max-width:900px){.path{grid-template-columns:1fr}}
+    .step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;text-align:center}.step b{display:block;margin-top:6px}.preview{max-width:100%;border-radius:18px;border:1px solid var(--line);display:none;margin-top:12px}.notice{background:#fff7ed;border:1px solid #fed7aa;color:#8a3d04;border-radius:18px;padding:14px;line-height:1.7}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="badge">🎪 AI農場體驗與食農教育設計師</div>
+    <h1>把一甲地農場，設計成讓人想走進來的休閒農場</h1>
+    <p class="subtitle">從學生手繪地圖、空拍照片、場域描述與設施勾選出發，規劃休閒農場場域布置圖、導覽解說路徑、食農教育活動與闖關遊戲。</p>
+    <div class="row hero-actions">
+      <a class="linkbtn" href="#designer">開始設計場域</a>
+      <a class="linkbtn secondary" href="#games">查看活動遊戲</a>
+      <a class="linkbtn secondary" href="#prompt">產生GPT指令</a>
+    </div>
+  </header>
 
+  <main class="wrap">
+    <section class="grid">
+      <div class="card span-12">
+        <h2>五大設計核心</h2>
+        <p class="muted">這不是單純產生活動流程，而是訓練學生用「休閒農場經營者」的角度，思考場域、動線、景觀、教育、遊戲與安全。</p>
+      </div>
+      <div class="card feature green span-3"><div class="icon">🗺️</div><h3>場域規劃</h3><p class="muted">手繪地圖、空拍圖、場地大小、湖水、山坡、動物區、停車場、販售中心與廁所配置。</p><span class="tag">一甲地農場</span><span class="tag">布置圖</span></div>
+      <div class="card feature orange span-3"><div class="icon">🚶</div><h3>導覽路線</h3><p class="muted">規劃入口、集合、景觀解說、採果體驗、休息販售、出口動線，讓遊客走得順、看得懂。</p><span class="tag">導覽路徑</span><span class="tag">場域解說</span></div>
+      <div class="card feature purple span-3"><div class="icon">🍅</div><h3>食農教育</h3><p class="muted">依國小、國中、高中職、親子或一般民眾，設計農作物知識、學習單與闖關問答。</p><span class="tag">課程設計</span><span class="tag">農作知識</span></div>
+      <div class="card feature blue span-3"><div class="icon">🎮</div><h3>體驗遊戲</h3><p class="muted">採集遊戲、農機具尋找、農作物抓寶、地圖尋寶、關主闖關與大地遊戲。</p><span class="tag">闖關</span><span class="tag">大地遊戲</span></div>
+    </section>
+
+    <section class="grid mt" id="designer">
+      <div class="card span-7">
+        <h2>① 農場場域資料</h2>
+        <div class="row">
+          <div><label>農場名稱</label><input id="farmName" value="一甲地夢想休閒農場"></div>
+          <div><label>場地大小</label><input id="farmSize" value="1甲地（約0.97公頃）"></div>
+        </div>
+        <div class="row">
+          <div><label>主要作物／主題</label><input id="crop" value="芒果、蓮霧、香草與小動物體驗"></div>
+          <div><label>預計人數</label><input id="people" value="30人"></div>
+        </div>
+        <div class="row">
+          <div><label>活動時間</label><select id="hours"><option>1小時</option><option selected>2小時</option><option>3小時</option><option>4小時</option><option>5小時</option></select></div>
+          <div><label>活動對象</label><select id="audience"><option>國小低年級</option><option>國小高年級</option><option>國中生</option><option selected>高中職學生</option><option>親子家庭</option><option>一般民眾</option><option>銀髮族</option></select></div>
+        </div>
+        <label>場域文字描述</label>
+        <textarea id="description">入口旁有大型停車場與販售中心，中央有草地可做大地遊戲，右側有採果區與香草植物區，左側有小動物區、餵羊區與餵牛區，後方有小湖與生態觀察區，山坡地可規劃滑草區。</textarea>
+        <label>上傳手繪地圖／空拍照片／場域平面圖</label>
+        <input type="file" id="mapImage" accept="image/*" onchange="previewImage(event)">
+        <img id="preview" class="preview" alt="場域圖片預覽">
+        <p class="small">提醒：網頁本身先協助學生整理規劃資料與GPT指令；真正的圖片理解與場域布置圖生成，可交給GPT助理搭配學生上傳的手繪圖或空拍圖完成。</p>
+      </div>
+
+      <div class="card span-5">
+        <h2>② 選擇場域設施</h2>
+        <div class="checks" id="facilities"></div>
+      </div>
+
+      <div class="card span-12" id="games">
+        <h2>③ 選擇體驗活動與遊戲</h2>
+        <div class="mode-tabs">
+          <div class="mode active" onclick="setZone('A',this)">A場域：入口與販售中心</div>
+          <div class="mode" onclick="setZone('B',this)">B場域：農作與採果區</div>
+          <div class="mode" onclick="setZone('C',this)">C場域：生態動物與遊憩區</div>
+        </div>
+        <p class="muted" id="zoneHelp">A場域適合迎賓、導覽開場、品牌故事、休息購物與集合說明。</p>
+        <div class="checks" id="gamesList"></div>
+        <label>學生自己的活動想法</label>
+        <textarea id="studentIdea" placeholder="例如：我想設計一個讓遊客用地圖找出10個農作物圖卡的遊戲，找到後要回答關主問題。"></textarea>
+      </div>
+
+      <div class="card span-12" id="prompt">
+        <h2>④ 一鍵產生 GPT 指令</h2>
+        <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 GPT 助理，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
+        <div class="row"><button onclick="generatePrompt()">產生GPT指令</button><button class="secondary" onclick="copyPrompt()">複製指令</button><button class="secondary" onclick="generateSample()">產生範例成果</button></div>
+        <div id="output" class="output mt">請先按「產生GPT指令」。</div>
+      </div>
+
+      <div class="card span-12">
+        <h2>課堂成果應包含</h2>
+        <div class="path">
+          <div class="step">🗺️<b>場域布置圖</b><span class="small">入口、動線、設施、休息區</span></div>
+          <div class="step">🚶<b>導覽解說路徑</b><span class="small">A、B、C場域串接</span></div>
+          <div class="step">🌱<b>景觀解說重點</b><span class="small">植物、生態、湖水、動物</span></div>
+          <div class="step">🎮<b>體驗遊戲設計</b><span class="small">闖關、抓寶、尋寶、採集</span></div>
+          <div class="step">🛡️<b>安全與服務規劃</b><span class="small">停車、廁所、動線、風險</span></div>
+        </div>
+        <div class="quote mt">教學重點：讓學生從「我有一塊農地」開始，學會把土地、作物、景觀、動物與故事，轉化成讓遊客願意參與的休閒農場體驗。</div>
+      </div>
+
+      <div class="card span-12">
+        <div class="notice"><strong>教師提醒：</strong>學生可使用自己手繪的活動場域圖，也可以參考實際休閒農場公開地圖後重新設計。若使用網路圖片作為參考，請避免直接抄襲原設計，課堂成果應以「重新規劃、重新命名、重新設計活動」為主。</div>
+      </div>
+    </section>
+  </main>
+
+<script>
+let currentZone='A';
+const facilityItems=['入口意象','大型停車場','廁所','販售中心／休息區','遊客中心','湖水／生態池','植物解說區','生態動物觀察','採果樂區','煮食區','餵牛區','餵羊區','小動物區','空地露營','大地遊戲區','滑草區（山坡地）','農機具展示區','DIY教室','遮雨棚','拍照打卡點'];
+const gamesByZone={
+  A:['迎賓品牌故事導覽','農場地圖任務說明','尋找不同農用機具遊戲','農產品販售解說任務','休閒農場服務動線觀察'],
+  B:['10分鐘採集遊戲','採果樂體驗','農作物抓寶：藏10個農作物圖卡','農作物知識闖關','作物分級與包裝小任務'],
+  C:['地圖尋寶遊戲（關主制）','生態動物觀察任務','餵牛／餵羊安全體驗','植物與湖水生態解說','大地遊戲與團隊合作','滑草區安全挑戰']
+};
+const zoneText={A:'A場域適合迎賓、導覽開場、品牌故事、休息購物與集合說明。',B:'B場域適合採果、作物知識、農事體驗、分級包裝與農產品加工任務。',C:'C場域適合生態觀察、動物體驗、湖水解說、露營遊憩與大地遊戲。'};
+function renderChecks(id,items,prefix){document.getElementById(id).innerHTML=items.map((x,i)=>`<label class="check"><input type="checkbox" value="${x}" ${i<6?'checked':''}><span>${x}</span></label>`).join('')}
+function setZone(z,el){currentZone=z;document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('zoneHelp').textContent=zoneText[z];renderChecks('gamesList',gamesByZone[z],'game')}
+function selected(id){return Array.from(document.querySelectorAll('#'+id+' input:checked')).map(x=>x.value)}
+function previewImage(e){const f=e.target.files[0],img=document.getElementById('preview');if(!f){img.style.display='none';return}img.src=URL.createObjectURL(f);img.style.display='block'}
+function generatePrompt(){
+ const data={farmName:farmName.value,farmSize:farmSize.value,crop:crop.value,people:people.value,hours:hours.value,audience:audience.value,description:description.value,facilities:selected('facilities'),zone:currentZone,games:selected('gamesList'),idea:studentIdea.value};
+ const txt=`你是「AI休閒農場場域規劃師、食農教育設計師與活動企劃教練」。請根據我提供的農場資料、手繪地圖或空拍照片，協助我設計一座吸睛的休閒農場，並產出完整企劃。
+
+【農場基本資料】
+農場名稱：${data.farmName}
+場地大小：${data.farmSize}
+主要作物／主題：${data.crop}
+預計人數：${data.people}
+活動時間：${data.hours}
+活動對象：${data.audience}
+場域描述：${data.description}
+
+【已規劃設施】
+${data.facilities.join('、')}
+
+【本次指定設計場域】
+${data.zone}場域：${zoneText[data.zone]}
+
+【希望加入的活動／遊戲】
+${data.games.join('、')}
+
+【學生自己的想法】
+${data.idea || '請GPT協助發想適合的活動遊戲。'}
+
+請依序輸出：
+1. 休閒農場整體定位與吸睛特色
+2. 場域布置圖與規劃圖說明（請用文字描述各區位置，也可用簡易ASCII平面圖表示）
+3. A、B、C場域分區功能設計
+4. 導覽解說路徑（入口到出口，含每一站停留時間）
+5. 每一站景觀解說重點：植物、湖水、生態動物、農作物、農機具、場域特色
+6. 根據${data.hours}設計完整活動流程表
+7. 至少3個體驗遊戲設計：包含遊戲名稱、玩法、時間、關主任務、農作物或場域知識題目
+8. 食農教育學習目標與學習單題目
+9. 安全風險檢查：停車場、廁所、湖水、餵動物、滑草、煮食、採果、動線
+10. 給學生的修正建議：如何讓這座休閒農場更有故事感、更適合遊客拍照、更具教育價值。`;
+ document.getElementById('output').textContent=txt;
+}
+function copyPrompt(){navigator.clipboard.writeText(document.getElementById('output').textContent).then(()=>alert('已複製GPT指令！'))}
+function generateSample(){document.getElementById('output').textContent=`【範例成果摘要】
+農場定位：一甲地親子食農體驗農場，以「看見作物、親近動物、完成任務、帶走農產品」為主軸。
+
+導覽路線：入口意象 → 遊客中心 → 農機具展示 → 採果區 → 香草植物區 → 湖水生態區 → 小動物區 → 大地遊戲草地 → 販售中心。
+
+2小時流程：
+0-10分｜集合與農場地圖任務說明
+10-25分｜入口與農機具尋找遊戲
+25-55分｜採果樂＋10分鐘採集挑戰
+55-75分｜湖水與植物生態解說
+75-95分｜小動物餵食與安全教育
+95-115分｜農作物抓寶闖關
+115-120分｜回到販售中心分享與合照
+
+遊戲一：農作物抓寶
+玩法：在不同區域藏10張農作物圖卡，學生依地圖尋找，找到後需回答關主問題。
+
+遊戲二：農機具偵探
+玩法：找到指定農機具或工具，說出用途與安全注意事項。
+
+遊戲三：地圖尋寶關主制
+玩法：A、B、C三區各設一位關主，完成作物知識、場域觀察與團隊合作任務後蓋章。`;}
+renderChecks('facilities',facilityItems,'facility');renderChecks('gamesList',gamesByZone.A,'game');
+</script>
+</body>
+</html>
