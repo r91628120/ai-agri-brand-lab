@@ -36,6 +36,7 @@
     .output{white-space:pre-wrap;background:#f4faf6;border:1px solid #cfe6d7;border-radius:20px;padding:18px;line-height:1.75;min-height:220px}.quote{font-size:21px;font-weight:900;line-height:1.55;background:linear-gradient(135deg,#e8f7ee,#fff);border-left:6px solid var(--green);padding:18px;border-radius:18px}
     .path{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}@media(max-width:900px){.path{grid-template-columns:1fr}}
     .step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;text-align:center}.step b{display:block;margin-top:6px}.preview{max-width:100%;border-radius:18px;border:1px solid var(--line);display:none;margin-top:12px}.notice{background:#fff7ed;border:1px solid #fed7aa;color:#8a3d04;border-radius:18px;padding:14px;line-height:1.7}
+    .other-field{margin-top:12px;background:#f7fbf8;border:1px dashed #b9d9c5;border-radius:16px;padding:12px}.other-field .row{gap:8px}.other-field label{margin:0;font-weight:900}.other-field input[type=checkbox]{width:auto}.other-field input[type=text]{margin-top:8px}
   </style>
 </head>
 <body>
@@ -88,6 +89,10 @@
       <div class="card span-5">
         <h2>② 選擇場域設施</h2>
         <div class="checks" id="facilities"></div>
+        <div class="other-field">
+          <label><input type="checkbox" id="otherFacilityCheck"> 其他場域設施</label>
+          <input id="otherFacilityText" type="text" placeholder="請輸入其他場域名稱，例如：香草迷宮、稻草迷宮、觀星平台、親水區">
+        </div>
       </div>
 
       <div class="card span-12" id="games">
@@ -106,7 +111,7 @@
       <div class="card span-12" id="prompt">
         <h2>④ 一鍵產生 GPT 指令</h2>
         <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 GPT 助理，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
-        <div class="row"><button onclick="generatePrompt()">產生GPT指令</button><button class="secondary" onclick="copyPrompt()">複製指令</button><button class="secondary" onclick="generateSample()">產生範例成果</button></div>
+        <div class="row"><button onclick="generatePrompt()">產生GPT指令</button><button class="secondary" onclick="copyPrompt()">複製指令</button><button class="secondary" onclick="generateAgriAssistantPrompt()">AI農創助理</button><button class="secondary" onclick="generateSample()">產生範例成果</button></div>
         <div id="output" class="output mt">請先按「產生GPT指令」。</div>
       </div>
 
@@ -139,7 +144,15 @@ const gamesByZone={
 const zoneText={A:'A場域適合迎賓、導覽開場、品牌故事、休息購物與集合說明。',B:'B場域適合採果、作物知識、農事體驗、分級包裝與農產品加工任務。',C:'C場域適合生態觀察、動物體驗、湖水解說、露營遊憩與大地遊戲。'};
 function renderChecks(id,items,prefix){document.getElementById(id).innerHTML=items.map((x,i)=>`<label class="check"><input type="checkbox" value="${x}" ${i<6?'checked':''}><span>${x}</span></label>`).join('')}
 function setZone(z,el){currentZone=z;document.querySelectorAll('.mode').forEach(x=>x.classList.remove('active'));el.classList.add('active');document.getElementById('zoneHelp').textContent=zoneText[z];renderChecks('gamesList',gamesByZone[z],'game')}
-function selected(id){return Array.from(document.querySelectorAll('#'+id+' input:checked')).map(x=>x.value)}
+function selected(id){
+  const arr=Array.from(document.querySelectorAll('#'+id+' input:checked')).map(x=>x.value);
+  if(id==='facilities'){
+    const otherCheck=document.getElementById('otherFacilityCheck');
+    const otherText=(document.getElementById('otherFacilityText')?.value||'').trim();
+    if(otherCheck && otherCheck.checked && otherText) arr.push('其他：'+otherText);
+  }
+  return arr;
+}
 function previewImage(e){const f=e.target.files[0],img=document.getElementById('preview');if(!f){img.style.display='none';return}img.src=URL.createObjectURL(f);img.style.display='block'}
 function generatePrompt(){
  const data={farmName:farmName.value,farmSize:farmSize.value,crop:crop.value,people:people.value,hours:hours.value,audience:audience.value,description:description.value,facilities:selected('facilities'),zone:currentZone,games:selected('gamesList'),idea:studentIdea.value};
@@ -178,6 +191,38 @@ ${data.idea || '請GPT協助發想適合的活動遊戲。'}
 9. 安全風險檢查：停車場、廁所、湖水、餵動物、滑草、煮食、採果、動線
 10. 給學生的修正建議：如何讓這座休閒農場更有故事感、更適合遊客拍照、更具教育價值。`;
  document.getElementById('output').textContent=txt;
+}
+function generateAgriAssistantPrompt(){
+ const assistantTxt=`你是「AI農創助理」，專門協助高中職農場經營科學生完成「農創生產與行銷」課程任務。你的任務不是直接替學生完成作業，而是用引導、提問、修正建議與範例協助學生完成休閒農場場域規劃、食農教育活動設計、導覽解說、體驗遊戲、品牌故事與行銷企劃。
+
+【角色定位】
+1. 你是休閒農場場域規劃顧問。
+2. 你是食農教育課程設計師。
+3. 你是農場導覽解說教練。
+4. 你是農業體驗活動與闖關遊戲設計師。
+5. 你是農創品牌與地方創生學習教練。
+
+【回應原則】
+請使用高中職學生能理解的語言，避免過度艱深。請先肯定學生的想法，再指出可以加強的地方。請勿只給空泛建議，要提供具體可執行的規劃。
+
+【學生可以提供的資料】
+學生可能會上傳手繪地圖、空拍照片、實際休閒農場場域地圖，或提供文字描述。請根據學生提供的資料，協助判斷入口、停車場、廁所、販售中心、採果區、湖水或生態池、動物區、植物解說區、煮食區、露營區、大地遊戲區、滑草區等位置是否合理。
+
+【你要協助產出的內容】
+1. 休閒農場整體定位與吸睛特色。
+2. 場域布置圖與規劃圖說明。
+3. 導覽解說路徑：入口、集合、景觀解說、體驗活動、休息販售、出口。
+4. 景觀解說重點：植物、湖水、生態動物、農作物、農機具、地方文化。
+5. A、B、C不同場域的體驗活動設計。
+6. 1、2、3、4、5小時不同活動長度的流程安排。
+7. 體驗遊戲設計，例如10分鐘採集遊戲、農機具尋找遊戲、農作物抓寶、地圖尋寶、關主闖關、農作物知識問答、大地遊戲。
+8. 食農教育學習目標、學習單題目與關卡題目。
+9. 安全風險檢查：停車場、湖水、動物互動、滑草、煮食、採果、動線、天候、廁所與人流。
+10. 給學生的修正建議，讓場域更有故事感、拍照感、教育性與商業吸引力。
+
+【重要提醒】
+請不要只輸出一篇文章。請用清楚的小標題、表格、流程、條列方式協助學生完成企劃。若學生提供的資料不足，請先列出需要補充的問題，再給一版初步建議。`;
+ document.getElementById('output').textContent=assistantTxt;
 }
 function copyPrompt(){navigator.clipboard.writeText(document.getElementById('output').textContent).then(()=>alert('已複製GPT指令！'))}
 function generateSample(){document.getElementById('output').textContent=`【範例成果摘要】
