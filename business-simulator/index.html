@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI創業經營推演器｜AI Simulation Learning Edition</title>
+  <meta name="description" content="AI創業經營推演器，輸入商品名稱、售價、銷售量與成本，AI自動推演營收、獲利、定價風險、銷售風險、損益平衡點與創業建議。" />
+  <meta name="keywords" content="AI創業,經營推演器,AI推演式學習,創業模擬,商品經營,農產品創業,品牌經營" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
+<body>
+  <header class="site-header">
+    <a href="../index.html" class="brand">
+      <span class="brand-icon">🚀</span>
+      <span>
+        <strong>AI創業經營推演器</strong>
+        <small>AI Simulation Learning Edition</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a href="#simulator">開始推演</a>
+      <a href="#cases">案例卡</a>
+      <a href="#learning">學習重點</a>
+      <a href="../index.html">回農創品牌實驗室</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">AI × 創業 × 商品經營 × 推演式學習</span>
+        <h1>🚀 AI創業經營推演器</h1>
+        <h2>輸入少量資料，AI推演完整經營結果</h2>
+        <p>
+          適用農產品禮盒、加工品、花藝商品、農場體驗、校園創業與各類商品經營。
+          只需輸入商品名稱、售價、銷售量與成本，系統即可推演營收、獲利、損益平衡、定價風險與創業建議。
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#simulator">開始創業推演</a>
+          <a class="btn secondary" href="#cases">查看案例卡</a>
+        </div>
+      </div>
+
+      <div class="hero-panel">
+        <div class="panel-card main-profit">
+          <span>核心公式</span>
+          <strong>售價 × 銷售量 − 成本</strong>
+          <small>從三個關鍵數字，看懂創業經營</small>
+        </div>
+        <div class="panel-grid">
+          <div>💰<span>營收</span></div>
+          <div>📈<span>獲利</span></div>
+          <div>🎯<span>損益平衡</span></div>
+          <div>🤖<span>AI建議</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases" class="section soft">
+      <div class="section-heading">
+        <span>Scenario Cards</span>
+        <h2>一鍵帶入創業案例</h2>
+        <p>先從案例開始，再讓學生修改售價、銷售量與成本，觀察不同決策造成的差異。</p>
+      </div>
+
+      <div class="case-grid">
+        <button class="case-card" onclick="loadCase('mangoBox')">
+          <strong>🥭 芒果禮盒</strong>
+          <span>售價 699｜銷量 1000｜成本 300000</span>
+        </button>
+        <button class="case-card" onclick="loadCase('driedFruit')">
+          <strong>🍍 果乾加工品</strong>
+          <span>售價 150｜銷量 5000｜成本 250000</span>
+        </button>
+        <button class="case-card" onclick="loadCase('flower')">
+          <strong>💐 花藝商品</strong>
+          <span>售價 1200｜銷量 300｜成本 180000</span>
+        </button>
+        <button class="case-card" onclick="loadCase('farmTour')">
+          <strong>🚜 農場體驗</strong>
+          <span>售價 350｜銷量 2000｜成本 260000</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="simulator" class="section simulator-section">
+      <div class="section-heading">
+        <span>Business Simulation</span>
+        <h2>AI創業經營推演器</h2>
+        <p>少輸入、多推演、重理解：讓學生從數據看懂創業決策。</p>
+      </div>
+
+      <div class="simulator-layout">
+        <div class="input-card">
+          <div class="input-group">
+            <label for="productInput">商品名稱</label>
+            <input id="productInput" type="text" placeholder="例如：芒果禮盒、果乾、花束、農場體驗" />
+          </div>
+
+          <div class="input-group">
+            <label for="priceInput">商品售價（元）</label>
+            <input id="priceInput" type="number" placeholder="例如：699" />
+          </div>
+
+          <div class="input-group">
+            <label for="quantityInput">預估銷售量</label>
+            <input id="quantityInput" type="number" placeholder="例如：1000" />
+          </div>
+
+          <div class="input-group">
+            <label for="costInput">總成本（元）</label>
+            <input id="costInput" type="number" placeholder="例如：300000" />
+          </div>
+
+          <div class="button-row">
+            <button onclick="calculateBusiness()">開始推演</button>
+            <button class="clear-btn" onclick="clearBusiness()">清除資料</button>
+          </div>
+
+          <div class="hint-box">
+            💡 適用單位：每盒、每包、每瓶、每束、每人次、每份服務。
+          </div>
+        </div>
+
+        <aside class="guide-card">
+          <h3>📘 如何使用？</h3>
+          <p>本工具協助學生理解商品定價、銷售量、成本與獲利之間的關係。</p>
+          <ul>
+            <li>商品售價：每一個單位的銷售價格。</li>
+            <li>預估銷售量：預計賣出的數量或人次。</li>
+            <li>總成本：原料、包裝、人工、運輸、平台、廣告與場地等成本。</li>
+            <li>預估營收 = 售價 × 銷售量。</li>
+            <li>預估獲利 = 營收 − 總成本。</li>
+            <li>損益平衡單價 = 總成本 ÷ 銷售量。</li>
+          </ul>
+        </aside>
+      </div>
+
+      <div id="result" class="result-box">請輸入資料後按下「開始推演」。</div>
+    </section>
+
+    <section id="learning" class="section learning-section">
+      <div class="section-heading">
+        <span>AI Simulation Learning</span>
+        <h2>這不是計算機，而是創業推演學習</h2>
+        <p>
+          學生不用先填一大堆欄位，只要輸入最關鍵的資料，AI就能推演多種可能結果，
+          再透過比較差異理解經營邏輯。
+        </p>
+      </div>
+
+      <div class="learning-flow">
+        <div><strong>01</strong><h3>少輸入</h3><p>商品、售價、銷量、成本。</p></div>
+        <div><strong>02</strong><h3>多推演</h3><p>營收、獲利、風險、定價、銷量。</p></div>
+        <div><strong>03</strong><h3>重理解</h3><p>看懂決策背後的可能結果。</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>🚀 AI創業經營推演器｜AI Simulation Learning Edition</p>
+    <p>屬於 AI農創品牌實驗室｜AI Agri Brand Lab</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
