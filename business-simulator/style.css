@@ -707,3 +707,63 @@ grid-template-columns:1fr;
 
 }
 
+/* v3.0 AI創業教練 */
+
+.ai-coach-box {
+  padding: 22px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fff7e6, #ffedd5);
+  border: 1px solid rgba(180, 83, 9, 0.16);
+  box-shadow: 0 14px 30px rgba(120, 72, 0, 0.08);
+}
+
+.ai-coach-box h4 {
+  color: #3f2a05;
+  font-size: 1.25rem;
+  margin-bottom: 14px;
+}
+
+.coach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.coach-card {
+  padding: 16px;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid rgba(180, 83, 9, 0.14);
+}
+
+.coach-card span {
+  display: block;
+  color: #8b7356;
+  font-weight: 900;
+  margin-bottom: 6px;
+}
+
+.coach-card strong {
+  display: block;
+  color: #3f2a05;
+  font-size: 1.12rem;
+}
+
+.coach-advice {
+  padding: 16px;
+  border-radius: 18px;
+  background: #fffaf1;
+  color: #5f492b;
+  font-weight: 850;
+}
+
+.coach-advice p + p {
+  margin-top: 10px;
+}
+
+@media (max-width: 720px) {
+  .coach-grid {
+    grid-template-columns: 1fr;
+  }
+}

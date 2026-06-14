@@ -365,7 +365,79 @@ let brandLevel = "";
 
   }  
 
+   // =====================
+// 🤖 v3.0 AI創業教練
+// =====================
 
+let coachScore = 0;
+let coachLevel = "";
+let mainProblem = "";
+let coachAdvice = "";
+let nextAction = "";
+
+if (profitRate >= 50) coachScore += 25;
+else if (profitRate >= 30) coachScore += 20;
+else if (profitRate >= 10) coachScore += 12;
+else coachScore += 5;
+
+if (roi >= 300) coachScore += 20;
+else if (roi >= 200) coachScore += 15;
+else if (roi >= 100) coachScore += 10;
+else if (adCost > 0) coachScore += 5;
+
+if (repeatRate >= 40) coachScore += 20;
+else if (repeatRate >= 20) coachScore += 12;
+else if (customers > 0) coachScore += 5;
+
+if (brandScore >= 60) coachScore += 20;
+else if (brandScore >= 40) coachScore += 12;
+else coachScore += 5;
+
+if (inventoryStatus.includes("正常")) coachScore += 15;
+else if (inventoryStatus.includes("未填寫")) coachScore += 8;
+else coachScore += 5;
+
+if (coachScore >= 85) {
+  coachLevel = "A+ 卓越型創業狀態";
+} else if (coachScore >= 70) {
+  coachLevel = "A 穩健成長型";
+} else if (coachScore >= 55) {
+  coachLevel = "B 可優化型";
+} else if (coachScore >= 40) {
+  coachLevel = "C 需調整型";
+} else {
+  coachLevel = "D 高風險型";
+}
+
+if (profitRate < 20) {
+  mainProblem = "獲利能力偏弱";
+  coachAdvice = "目前最需要優先檢查售價、成本與銷售量。建議先降低不必要成本，或提高商品附加價值。";
+  nextAction = "優先重新檢查成本結構與商品定價。";
+} else if (roi < 100 && adCost > 0) {
+  mainProblem = "廣告投資效益不足";
+  coachAdvice = "目前廣告投入的回收效果不佳，建議調整廣告內容、目標客群或銷售頁面。";
+  nextAction = "先優化廣告文案與商品頁，再增加廣告預算。";
+} else if (repeatRate < 20 && customers > 0) {
+  mainProblem = "回購率偏低";
+  coachAdvice = "顧客可能買過一次後沒有再次購買，建議建立會員制度、回購優惠或LINE社群。";
+  nextAction = "設計回購優惠與會員經營機制。";
+} else if (brandScore < 40) {
+  mainProblem = "品牌基礎不足";
+  coachAdvice = "商品目前可能仍停留在價格競爭階段，建議補強品牌故事、包裝設計與社群經營。";
+  nextAction = "優先建立品牌故事與商品包裝特色。";
+} else if (inventoryStatus.includes("缺貨")) {
+  mainProblem = "缺貨風險";
+  coachAdvice = "目前庫存低於安全庫存，若銷售成長可能無法供貨，建議提前補貨。";
+  nextAction = "建立安全庫存與補貨週期。";
+} else if (inventoryStatus.includes("滯銷")) {
+  mainProblem = "庫存過高";
+  coachAdvice = "目前庫存可能過多，建議透過組合促銷、團購或活動銷售降低庫存壓力。";
+  nextAction = "設計促銷方案，加速庫存周轉。";
+} else {
+  mainProblem = "整體經營狀態良好";
+  coachAdvice = "目前商品具備不錯的獲利與品牌潛力，建議逐步擴大通路、累積顧客資料並建立長期回購機制。";
+  nextAction = "持續強化品牌、通路與顧客經營。";
+}
 
 
   result.innerHTML = `
@@ -663,6 +735,33 @@ let brandLevel = "";
         </p>
 
     </div>
+
+    <div class="ai-coach-box">
+       <h4>🤖 v3.0 AI創業教練診斷</h4>
+
+     <div class="coach-grid">
+      <div class="coach-card">
+        <span>創業總評分</span>
+        <strong>${coachScore} 分</strong>
+      </div>
+
+      <div class="coach-card">
+        <span>創業狀態</span>
+        <strong>${coachLevel}</strong>
+      </div>
+
+     <div class="coach-card">
+        <span>目前最大問題</span>
+        <strong>${mainProblem}</strong>
+    </div>
+  </div>
+
+    <div class="coach-advice">
+       <p><strong>AI教練診斷：</strong>${coachAdvice}</p>
+       <p><strong>下一步建議：</strong>${nextAction}</p>
+    </div>
+  </div>
+
 
 
       <div class="ai-advice-box">
