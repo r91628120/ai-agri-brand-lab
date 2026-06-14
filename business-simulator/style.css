@@ -565,3 +565,105 @@ body {
     flex-direction: column;
   }
 }
+
+/* v2.0 成本結構分析 */
+
+.cost-structure-box {
+  margin-top: 6px;
+  padding: 20px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #fff7e6, #fffdf6);
+  border: 1px solid rgba(180, 83, 9, 0.14);
+}
+
+.cost-structure-box h3 {
+  color: #3f2a05;
+  font-size: 1.12rem;
+  margin-bottom: 8px;
+}
+
+.cost-structure-box p {
+  color: #6f5b3d;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cost-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.cost-column {
+  display: grid;
+  gap: 12px;
+}
+
+.cost-column h4 {
+  color: #854d0e;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.cost-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin: 14px 0;
+}
+
+.cost-summary-grid small {
+  display: block;
+  margin-top: 4px;
+  color: #854d0e;
+  font-weight: 900;
+}
+
+.cost-bar-wrap {
+  margin: 18px 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #fff7e6;
+  border: 1px solid rgba(180, 83, 9, 0.12);
+}
+
+.cost-bar {
+  display: flex;
+  width: 100%;
+  min-height: 42px;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.fixed-bar,
+.variable-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 64px;
+  padding: 8px;
+  color: #3f2a05;
+  font-size: 0.9rem;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.fixed-bar {
+  background: #fed7aa;
+}
+
+.variable-bar {
+  background: #fde68a;
+}
+
+@media (max-width: 720px) {
+  .cost-grid,
+  .cost-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fixed-bar,
+  .variable-bar {
+    font-size: 0.78rem;
+  }
+}

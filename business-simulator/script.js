@@ -1,6 +1,6 @@
 // ===============================
 // 🚀 AI創業經營推演器
-// AI Simulation Learning Edition
+// AI Simulation Learning Edition v2.0
 // ===============================
 
 const businessCases = {
@@ -8,49 +8,115 @@ const businessCases = {
     name: "芒果禮盒",
     price: 699,
     quantity: 1000,
-    cost: 300000
+    cost: 300000,
+    rent: 30000,
+    equipment: 30000,
+    labor: 60000,
+    material: 90000,
+    packaging: 40000,
+    logistics: 20000,
+    marketing: 30000
   },
   driedFruit: {
     name: "果乾加工品",
     price: 150,
     quantity: 5000,
-    cost: 250000
+    cost: 250000,
+    rent: 20000,
+    equipment: 30000,
+    labor: 50000,
+    material: 70000,
+    packaging: 30000,
+    logistics: 20000,
+    marketing: 30000
   },
   flower: {
     name: "花藝商品",
     price: 1200,
     quantity: 300,
-    cost: 180000
+    cost: 180000,
+    rent: 20000,
+    equipment: 15000,
+    labor: 45000,
+    material: 45000,
+    packaging: 15000,
+    logistics: 10000,
+    marketing: 30000
   },
   farmTour: {
     name: "農場體驗",
     price: 350,
     quantity: 2000,
-    cost: 260000
+    cost: 260000,
+    rent: 20000,
+    equipment: 60000,
+    labor: 70000,
+    material: 20000,
+    packaging: 10000,
+    logistics: 30000,
+    marketing: 50000
   }
 };
+
+function getNumber(id) {
+  const el = document.getElementById(id);
+  return el ? Number(el.value) || 0 : 0;
+}
+
+function setValue(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.value = value;
+}
 
 function loadCase(caseName) {
   const item = businessCases[caseName];
   if (!item) return;
 
-  document.getElementById("productInput").value = item.name;
-  document.getElementById("priceInput").value = item.price;
-  document.getElementById("quantityInput").value = item.quantity;
-  document.getElementById("costInput").value = item.cost;
+  setValue("productInput", item.name);
+  setValue("priceInput", item.price);
+  setValue("quantityInput", item.quantity);
+  setValue("costInput", item.cost);
+
+  setValue("rentInput", item.rent);
+  setValue("equipmentInput", item.equipment);
+  setValue("laborInput", item.labor);
+  setValue("materialInput", item.material);
+  setValue("packagingInput", item.packaging);
+  setValue("logisticsInput", item.logistics);
+  setValue("marketingInput", item.marketing);
 
   calculateBusiness();
 }
 
 function calculateBusiness() {
-  const productName = document.getElementById("productInput").value.trim() || "本商品";
-  const price = Number(document.getElementById("priceInput").value);
-  const quantity = Number(document.getElementById("quantityInput").value);
-  const cost = Number(document.getElementById("costInput").value);
+  const productName =
+    document.getElementById("productInput").value.trim() || "本商品";
+
+  const price = getNumber("priceInput");
+  const quantity = getNumber("quantityInput");
+  const basicCost = getNumber("costInput");
+
+  const rent = getNumber("rentInput");
+  const equipment = getNumber("equipmentInput");
+  const labor = getNumber("laborInput");
+
+  const material = getNumber("materialInput");
+  const packaging = getNumber("packagingInput");
+  const logistics = getNumber("logisticsInput");
+  const marketing = getNumber("marketingInput");
+
+  const fixedCost = rent + equipment + labor;
+  const variableCost = material + packaging + logistics + marketing;
+  const detailCost = fixedCost + variableCost;
+
+  const cost = detailCost > 0 ? detailCost : basicCost;
+  const costSource = detailCost > 0 ? "成本明細加總" : "總成本欄位";
+
   const result = document.getElementById("result");
 
   if (!price || !quantity || !cost) {
-    result.innerHTML = "⚠️ 請完整輸入商品售價、預估銷售量與總成本。";
+    result.innerHTML =
+      "⚠️ 請至少輸入商品售價、預估銷售量，並填寫總成本或成本明細。";
     return;
   }
 
@@ -61,6 +127,18 @@ function calculateBusiness() {
   const safeSpace = price - breakEvenPrice;
   const priceImpact = quantity;
   const breakEvenQuantity = Math.ceil(cost / price);
+
+  const fixedRate = cost ? (fixedCost / cost) * 100 : 0;
+  const variableRate = cost ? (variableCost / cost) * 100 : 0;
+  const fixedRiskText =
+    fixedRate >= 50
+      ? "固定成本偏高，銷售量下降時壓力較大。"
+      : "固定成本相對可控，經營彈性較佳。";
+
+  const variableRiskText =
+    variableRate >= 60
+      ? "變動成本偏高，應優先檢查原料、包材、物流與廣告成本。"
+      : "變動成本比例尚可，仍可透過採購與流程優化提升利潤。";
 
   function money(num) {
     return Math.round(num).toLocaleString();
@@ -161,7 +239,7 @@ function calculateBusiness() {
         <span>AI Simulation Learning Report</span>
         <h3>📊 ${productName}｜AI創業推演分析報告</h3>
         <p>
-          AI已根據商品售價、銷售量與成本，自動推演營收、獲利、定價風險、銷售風險與創業建議。
+          AI已根據商品售價、銷售量、總成本與成本結構，自動推演營收、獲利、定價風險、銷售風險、成本比例與創業建議。
         </p>
       </div>
 
@@ -305,6 +383,72 @@ function calculateBusiness() {
         </p>
       </div>
 
+      <div class="analysis-section">
+        <h4>⑤ 📊 成本結構分析（v2.0）</h4>
+        <p>
+          本次推演採用：<strong>${costSource}</strong>。
+          AI協助拆解固定成本與變動成本，讓學生理解成本結構如何影響獲利與風險。
+        </p>
+
+        <div class="cost-summary-grid">
+          <div class="result-card">
+            <span>🏠 固定成本</span>
+            <strong>${money(fixedCost)} 元</strong>
+            <small>${percent(fixedRate)}%</small>
+          </div>
+
+          <div class="result-card">
+            <span>📦 變動成本</span>
+            <strong>${money(variableCost)} 元</strong>
+            <small>${percent(variableRate)}%</small>
+          </div>
+
+          <div class="result-card highlight">
+            <span>💸 成本加總</span>
+            <strong>${money(cost)} 元</strong>
+            <small>100%</small>
+          </div>
+        </div>
+
+        <div class="cost-bar-wrap">
+          <div class="cost-bar">
+            <div class="fixed-bar" style="width:${fixedRate}%">
+              固定 ${percent(fixedRate)}%
+            </div>
+            <div class="variable-bar" style="width:${variableRate}%">
+              變動 ${percent(variableRate)}%
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="analysis-table">
+            <thead>
+              <tr>
+                <th>成本類型</th>
+                <th>項目</th>
+                <th>金額</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>固定成本</td><td>房租 / 場地費</td><td>${money(rent)} 元</td></tr>
+              <tr><td>固定成本</td><td>設備 / 折舊</td><td>${money(equipment)} 元</td></tr>
+              <tr><td>固定成本</td><td>人事 / 固定人工</td><td>${money(labor)} 元</td></tr>
+              <tr><td>變動成本</td><td>原料成本</td><td>${money(material)} 元</td></tr>
+              <tr><td>變動成本</td><td>包材成本</td><td>${money(packaging)} 元</td></tr>
+              <tr><td>變動成本</td><td>物流 / 運輸</td><td>${money(logistics)} 元</td></tr>
+              <tr><td>變動成本</td><td>廣告 / 行銷</td><td>${money(marketing)} 元</td></tr>
+              <tr class="current-row"><td>總成本</td><td>全部成本加總</td><td>${money(cost)} 元</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="insight-box">
+          📌 ${fixedRiskText}<br>
+          📌 ${variableRiskText}
+        </div>
+      </div>
+
       <div class="ai-advice-box">
         <h4>🤖 AI創業顧問建議</h4>
         <p>${advice}</p>
@@ -316,6 +460,7 @@ function calculateBusiness() {
           <li>如果競爭對手降價 50 元，你會跟著降價，還是改用品牌價值提高吸引力？</li>
           <li>如果銷售量下降 20%，你會增加廣告、調整包裝、推出組合商品，還是降低成本？</li>
           <li>本商品目前最重要的變因是售價、銷售量，還是成本？為什麼？</li>
+          <li>固定成本與變動成本哪一項比較容易調整？為什麼？</li>
           <li>如果要讓利潤率提高，你會優先改變哪一個條件？</li>
         </ol>
       </div>
@@ -325,9 +470,19 @@ function calculateBusiness() {
 }
 
 function clearBusiness() {
-  document.getElementById("productInput").value = "";
-  document.getElementById("priceInput").value = "";
-  document.getElementById("quantityInput").value = "";
-  document.getElementById("costInput").value = "";
-  document.getElementById("result").innerHTML = "請輸入資料後按下「開始推演」。";
+  setValue("productInput", "");
+  setValue("priceInput", "");
+  setValue("quantityInput", "");
+  setValue("costInput", "");
+
+  setValue("rentInput", "");
+  setValue("equipmentInput", "");
+  setValue("laborInput", "");
+  setValue("materialInput", "");
+  setValue("packagingInput", "");
+  setValue("logisticsInput", "");
+  setValue("marketingInput", "");
+
+  document.getElementById("result").innerHTML =
+    "請輸入資料後按下「開始推演」。";
 }

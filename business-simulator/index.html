@@ -114,6 +114,60 @@
             <input id="costInput" type="number" placeholder="例如：300000" />
           </div>
 
+           <div class="cost-structure-box">
+  <h3>📊 v2.0 成本結構分析（選填）</h3>
+  <p>
+    若填寫下方成本明細，系統會優先用「固定成本＋變動成本」加總作為總成本；
+    若不填，則使用上方「總成本」。
+  </p>
+
+  <div class="cost-grid">
+    <div class="cost-column">
+      <h4>🏠 固定成本</h4>
+
+      <div class="input-group">
+        <label for="rentInput">房租 / 場地費（元）</label>
+        <input id="rentInput" type="number" placeholder="例如：30000" />
+      </div>
+
+      <div class="input-group">
+        <label for="equipmentInput">設備 / 折舊（元）</label>
+        <input id="equipmentInput" type="number" placeholder="例如：30000" />
+      </div>
+
+      <div class="input-group">
+        <label for="laborInput">人事 / 固定人工（元）</label>
+        <input id="laborInput" type="number" placeholder="例如：60000" />
+      </div>
+    </div>
+
+    <div class="cost-column">
+          <h4>📦 變動成本</h4>
+
+           <div class="input-group">
+             <label for="materialInput">原料成本（元）</label>
+             <input id="materialInput" type="number" placeholder="例如：90000" />
+           </div>
+
+           <div class="input-group">
+            <label for="packagingInput">包材成本（元）</label>
+            <input id="packagingInput" type="number" placeholder="例如：40000" />
+           </div>
+
+           <div class="input-group">
+            <label for="logisticsInput">物流 / 運輸（元）</label>
+            <input id="logisticsInput" type="number" placeholder="例如：20000" />
+           </div>
+
+          <div class="input-group">
+            <label for="marketingInput">廣告 / 行銷（元）</label>
+            <input id="marketingInput" type="number" placeholder="例如：30000" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+
           <div class="button-row">
             <button onclick="calculateBusiness()">開始推演</button>
             <button class="clear-btn" onclick="clearBusiness()">清除資料</button>
