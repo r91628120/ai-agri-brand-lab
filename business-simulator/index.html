@@ -114,34 +114,34 @@
             <input id="costInput" type="number" placeholder="例如：300000" />
           </div>
 
-           <div class="cost-structure-box">
-  <h3>📊 v2.0 成本結構分析（選填）</h3>
-  <p>
-    若填寫下方成本明細，系統會優先用「固定成本＋變動成本」加總作為總成本；
-    若不填，則使用上方「總成本」。
-  </p>
+      <div class="cost-structure-box">
+           <h3>📊 v2.0 成本結構分析（選填）</h3>
+             <p>
+                若填寫下方成本明細，系統會優先用「固定成本＋變動成本」加總作為總成本；
+                 若不填，則使用上方「總成本」。
+             </p>
 
-  <div class="cost-grid">
-    <div class="cost-column">
-      <h4>🏠 固定成本</h4>
+        <div class="cost-grid">
+           <div class="cost-column">
+               <h4>🏠 固定成本</h4>
 
-      <div class="input-group">
-        <label for="rentInput">房租 / 場地費（元）</label>
-        <input id="rentInput" type="number" placeholder="例如：30000" />
-      </div>
+          <div class="input-group">
+            <label for="rentInput">房租 / 場地費（元）</label>
+            <input id="rentInput" type="number" placeholder="例如：30000" />
+          </div>
 
-      <div class="input-group">
-        <label for="equipmentInput">設備 / 折舊（元）</label>
-        <input id="equipmentInput" type="number" placeholder="例如：30000" />
-      </div>
+          <div class="input-group">
+            <label for="equipmentInput">設備 / 折舊（元）</label>
+            <input id="equipmentInput" type="number" placeholder="例如：30000" />
+          </div>
 
-      <div class="input-group">
-        <label for="laborInput">人事 / 固定人工（元）</label>
-        <input id="laborInput" type="number" placeholder="例如：60000" />
-      </div>
-    </div>
+          <div class="input-group">
+            <label for="laborInput">人事 / 固定人工（元）</label>
+            <input id="laborInput" type="number" placeholder="例如：60000" />
+          </div>
+        </div>
 
-    <div class="cost-column">
+        <div class="cost-column">
           <h4>📦 變動成本</h4>
 
            <div class="input-group">
@@ -166,6 +166,96 @@
         </div>
       </div>
     </div>
+
+            <!-- 📦 v2.1 庫存管理 -->
+
+    <div class="cost-structure-box">
+         <h3>📦 v2.1 庫存管理（選填）</h3>
+
+         <div class="cost-grid">
+
+         <div class="input-group">
+            <label>目前庫存量</label>
+           <input id="inventoryInput" type="number" placeholder="例如：1000">
+         </div>
+
+         <div class="input-group">
+            <label>安全庫存量</label>
+            <input id="safeInventoryInput" type="number" placeholder="例如：300">
+         </div>
+
+        <div class="input-group">
+          <label>每月平均銷售量</label>
+          <input id="monthlySalesInput" type="number" placeholder="例如：200">
+        </div>
+
+       </div>
+     </div>
+
+            <!-- ROI -->
+
+    <div class="cost-structure-box">
+        <h3>📈 v2.2 ROI分析（選填）</h3>
+
+      <div class="cost-grid">
+
+        <div class="input-group">
+          <label>廣告投入金額</label>
+          <input id="adCostInput" type="number" placeholder="例如：10000">
+        </div>
+
+        <div class="input-group">
+           <label>廣告帶來銷售額</label>
+           <input id="adRevenueInput" type="number" placeholder="例如：50000">
+        </div>
+
+      </div>
+    </div>
+
+          <!-- 回購率 -->
+
+    <div class="cost-structure-box">
+         <h3>👥 v2.3 回購率分析（選填）</h3>
+
+        <div class="cost-grid">
+
+         <div class="input-group">
+            <label>總客戶數</label>
+           <input id="customerInput" type="number" placeholder="例如：100">
+        </div>
+
+         <div class="input-group">
+            <label>回購客戶數</label>
+            <input id="repeatCustomerInput" type="number" placeholder="例如：35">
+         </div>
+        </div>
+
+      </div>
+    </div>
+
+          <!-- 品牌價值 -->
+
+    <div class="cost-structure-box">
+          <h3>🏆 v2.4 品牌價值係數</h3>
+
+    <div class="brand-check-grid">
+
+        <label><input type="checkbox" id="brandStory"> 品牌故事</label>
+
+        <label><input type="checkbox" id="packageDesign"> 精美包裝</label>
+
+        <label><input type="checkbox" id="socialMedia"> 社群經營</label>
+
+        <label><input type="checkbox" id="website"> 官方網站</label>
+
+        <label><input type="checkbox" id="membership"> 會員制度</label>
+
+        <label><input type="checkbox" id="businessPartner"> 企業合作</label>
+
+        <label><input type="checkbox" id="esg"> ESG永續理念</label>
+
+      </div>
+    </div>   
 
 
           <div class="button-row">

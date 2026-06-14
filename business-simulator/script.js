@@ -232,6 +232,142 @@ function calculateBusiness() {
     `;
   }
 
+      // =====================
+// 📦 庫存管理
+// =====================
+
+const inventory = getNumber("inventoryInput");
+const safeInventory = getNumber("safeInventoryInput");
+const monthlySales = getNumber("monthlySalesInput");
+
+const inventoryMonths =
+      monthlySales > 0
+    ? inventory / monthlySales
+    : 0;
+
+     let inventoryStatus = "未填寫";
+
+       if (inventory > 0) {
+
+       if (inventory < safeInventory) {
+
+         inventoryStatus = "⚠ 缺貨風險";
+
+        }
+       else if (inventory > monthlySales * 6) {
+
+          inventoryStatus = "⚠ 滯銷風險";
+
+        }
+       else {
+
+        inventoryStatus = "✅ 庫存正常";
+
+        }
+
+}
+
+    // =====================
+    // ROI
+    // =====================
+
+const adCost =
+      getNumber("adCostInput");
+
+const adRevenue =
+      getNumber("adRevenueInput");
+
+const roi =
+   adCost > 0
+   ? ((adRevenue - adCost) / adCost) * 100
+   : 0;
+
+let roiLevel = "";
+
+if (roi >= 300) {
+
+   roiLevel = "★★★★★ 極佳";
+
+}
+else if (roi >= 200) {
+
+   roiLevel = "★★★★ 良好";
+
+}
+else if (roi >= 100) {
+
+   roiLevel = "★★★ 普通";
+
+}
+else {
+
+   roiLevel = "⚠ 需改善";
+
+}
+
+// =====================
+// 回購率
+// =====================
+
+const customers =
+      getNumber("customerInput");
+
+const repeatCustomers =
+      getNumber("repeatCustomerInput");
+
+const repeatRate =
+      customers > 0
+      ? (repeatCustomers / customers) * 100
+      : 0;
+
+// =====================
+// 品牌價值
+// =====================
+
+let brandScore = 0;
+
+ [
+    "brandStory",
+    "packageDesign",
+    "socialMedia",
+    "website",
+    "membership",
+    "businessPartner",
+    "esg"
+  ].forEach(id=>{
+
+const el =
+      document.getElementById(id);
+
+    if(el && el.checked){
+
+       brandScore += 10;
+
+    }
+
+});
+
+let brandLevel = "";
+
+   if (brandScore >= 60) {
+
+   brandLevel = "🏆 品牌成熟型";
+
+   }
+   else if (brandScore >= 40) {
+
+   brandLevel = "📈 品牌成長型";
+
+   }
+   else {
+
+   brandLevel = "🌱 品牌起步型";
+
+  }  
+
+
+
+
   result.innerHTML = `
     <div class="simulation-report">
 
@@ -449,6 +585,86 @@ function calculateBusiness() {
         </div>
       </div>
 
+      <div class="analysis-section">
+
+           <h4>⑥ 📦 庫存管理分析</h4>
+
+             <p>
+                目前庫存可支撐
+                <strong>${inventoryMonths.toFixed(1)}</strong>
+                個月
+             </p>
+
+           <div class="insight-box">
+              ${inventoryStatus}
+           </div>
+
+      </div>
+
+      <div class="analysis-section">
+
+        <h4>⑦ 📈 ROI分析</h4>
+
+          <p>
+
+             ROI：
+
+                <strong>
+
+                  ${roi.toFixed(1)}%
+
+                </strong>
+
+                <br>
+
+                 ${roiLevel}
+
+          </p>
+
+      </div>
+
+      <div class="analysis-section">
+
+        <h4>⑧ 👥 回購率分析</h4>
+
+        <p>
+
+          回購率：
+
+          <strong>
+
+           ${repeatRate.toFixed(1)}%
+
+         </strong>
+
+        </p>
+
+   </div>
+
+    <div class="analysis-section">
+
+          <h4>⑨ 🏆 品牌價值係數</h4>
+
+         <p>
+
+              品牌價值分數：
+
+         <strong>
+
+           ${brandScore}
+
+           分
+          <br>
+
+           ${brandLevel}
+
+         </strong>
+
+        </p>
+
+    </div>
+
+
       <div class="ai-advice-box">
         <h4>🤖 AI創業顧問建議</h4>
         <p>${advice}</p>
@@ -482,6 +698,38 @@ function clearBusiness() {
   setValue("packagingInput", "");
   setValue("logisticsInput", "");
   setValue("marketingInput", "");
+
+  setValue("inventoryInput", "");
+  setValue("safeInventoryInput", "");
+  setValue("monthlySalesInput", "");
+
+  setValue("adCostInput", "");
+  setValue("adRevenueInput", "");
+
+  setValue("customerInput", "");
+  setValue("repeatCustomerInput", "");
+
+  [
+     "brandStory",
+     "packageDesign",
+     "socialMedia",
+     "website",
+     "membership",
+     "businessPartner",
+     "esg"
+  ].forEach(id => {
+
+const el = document.getElementById(id);
+
+  if(el){
+
+     el.checked = false;
+
+    }
+
+  });
+
+
 
   document.getElementById("result").innerHTML =
     "請輸入資料後按下「開始推演」。";

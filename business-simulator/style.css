@@ -667,3 +667,43 @@ body {
     font-size: 0.78rem;
   }
 }
+
+/* v2.1~v2.4 */
+
+.brand-check-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:12px;
+}
+
+.brand-check-grid label{
+  font-weight:800;
+  color:#5f492b;
+}
+
+.inventory-status{
+  background:#fff7e6;
+  border-radius:16px;
+  padding:16px;
+  margin-top:12px;
+}
+
+.analysis-badge{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#ffedd5;
+  color:#c2410c;
+  font-weight:900;
+  margin-top:8px;
+}
+
+@media(max-width:720px){
+
+.brand-check-grid{
+grid-template-columns:1fr;
+}
+
+}
+
