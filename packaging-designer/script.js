@@ -41,7 +41,19 @@ function generateDesign(){
       <div class="result-box"><h3>④ 包裝文案</h3><p><b>正面：</b><br>${front.replace(/\n/g,'<br>')}<br><br><b>背面：</b><br>${back.replace(/\n/g,'<br>')}</p></div>
       <div class="result-box"><h3>⑤ Logo Prompt</h3><div class="prompt" id="logoPrompt">${logoPrompt}</div><button class="copy-btn" onclick="copyText('logoPrompt')">複製 Logo Prompt</button></div>
       <div class="result-box"><h3>⑥ 包裝設計 Prompt</h3><div class="prompt" id="packagePrompt">${packagePrompt}</div><button class="copy-btn" onclick="copyText('packagePrompt')">複製包裝 Prompt</button></div>
-      <div class="result-box"><h3>⑦ 社群文案</h3><div class="prompt" id="socialCopy">${social}</div><button class="copy-btn" onclick="copyText('socialCopy')">複製社群文案</button></div>
+
+      <div class="result-box agri-coach-box">
+           <h3>🚀 AI農創教練進階創作</h3>
+             <p>已完成品牌命名、品牌故事、Logo Prompt 與包裝設計 Prompt。</p>
+             <p>請將上方 Prompt 複製後，貼到「AI農創教練」，可進一步產生更完整的產品解說、電商文案、社群貼文、Logo 圖片與包裝設計圖片。</p>
+          <a class="coach-btn"
+               href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach"
+                target="_blank">
+        🚀開啟 AI農創教練
+  </a>
+</div>
+
+<div class="result-box"><h3>⑦ 社群文案</h3><div class="prompt" id="socialCopy">${social}</div><button class="copy-btn" onclick="copyText('socialCopy')">複製社群文案</button></div>
       <div class="result-box"><h3>⑧ AI推演學習問題</h3><p>1. 如果目標客群改成企業團購，包裝要怎麼改？<br>2. 如果售價提高，品牌故事與包裝質感要如何支撐？<br>3. 哪一個品牌元素最能提高商品信任感？<br>4. 包裝設計如何幫助商品進入電商市場？</p></div>
     </div>`;
 }
