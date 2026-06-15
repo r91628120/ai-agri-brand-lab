@@ -13,7 +13,20 @@
     .brand-badge{display:inline-flex;align-items:center;gap:12px;padding:12px 22px;border-radius:999px;background:linear-gradient(135deg,#e9fff1,#dff7e9);color:#14804f;font-weight:900;margin-bottom:18px;box-shadow:0 10px 30px rgba(21,145,92,.10)}.brand-badge span{font-size:36px}
     h1{font-size:clamp(34px,6vw,60px);line-height:1.12;margin:0 0 16px;letter-spacing:.02em}.subtitle{max-width:880px;margin:0 auto;color:var(--muted);font-size:clamp(16px,2.4vw,22px);line-height:1.85}.hero-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:26px}.hero-actions a{padding:12px 18px;border-radius:16px;background:#fff;color:#168153;border:1px solid #cfe8d8;font-weight:900;box-shadow:0 8px 20px rgba(21,145,92,.08)}
     main{max-width:1180px;margin:0 auto;padding:26px 18px 70px}.section-title{text-align:center;margin:26px 0 22px}.section-title h2{font-size:clamp(28px,4vw,42px);margin:0 0 10px}.section-title p{margin:0 auto;max-width:760px;color:var(--muted);line-height:1.8;font-size:17px}
-    .cards{display:grid;grid-template-columns:repeat(7,1fr);gap:18px}@media(max-width:1100px){.cards{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.cards{grid-template-columns:1fr}header{padding-top:38px}}
+    .cards{
+           display:grid;
+           grid-template-columns:repeat(4,1fr);
+           gap:22px;
+           align-items:stretch;
+          }
+    @media(max-width:1200px){
+    .cards{grid-template-columns:repeat(3,1fr)}
+          }
+    @media(max-width:900px){
+     .cards{grid-template-columns:repeat(2,1fr)}
+          }
+
+@media(max-width:680px){.cards{grid-template-columns:1fr}header{padding-top:38px}}
     .tool-card{position:relative;overflow:hidden;min-height:520px;border-radius:30px;background:rgba(255,255,255,.92);border:1px solid var(--line);box-shadow:var(--shadow);padding:24px;display:flex;flex-direction:column;transition:.25s ease}.tool-card:hover{transform:translateY(-5px);box-shadow:0 24px 55px rgba(18,49,38,.14)}.tool-card::before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--accent)}.tool-card::after{content:"";position:absolute;width:170px;height:170px;right:-75px;top:-80px;border-radius:50%;background:var(--soft);z-index:0}.tool-content{position:relative;z-index:1;display:flex;flex-direction:column;height:100%}
     .icon{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;font-size:38px;background:var(--accent);color:#fff;box-shadow:0 16px 30px var(--glow);margin-bottom:20px}.tag{display:inline-flex;align-self:flex-start;padding:7px 12px;border-radius:999px;background:#102033;color:white;font-weight:900;font-size:13px;margin-bottom:14px}.tool-card h3{font-size:25px;line-height:1.25;margin:0 0 14px}.tool-card p{color:var(--muted);line-height:1.8;margin:0 0 18px;font-size:15.5px}
     .features{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 22px}.feature{min-height:58px;display:flex;align-items:center;gap:8px;padding:10px;border-radius:16px;background:#f7fbf8;color:#234439;font-weight:800;font-size:14px}.feature::before{content:"✓";color:var(--green);font-weight:900}.card-btn{margin-top:auto;display:flex;justify-content:center;align-items:center;gap:10px;padding:14px 16px;border-radius:18px;background:var(--accent);color:white;font-weight:900;box-shadow:0 14px 26px var(--glow)}
@@ -40,39 +53,7 @@
       cursor:not-allowed;
     }
 
-    .ai-coach-section{
-      margin:34px 0;
-      background:linear-gradient(135deg,#fff7ed,#ecfdf5);
-      border:1px solid #facc15;
-      border-radius:30px;
-      padding:30px;
-      text-align:center;
-      box-shadow:var(--shadow);
-    }
-    .ai-coach-section h2{
-      font-size:clamp(28px,4vw,42px);
-      margin:0 0 12px;
-    }
-    .ai-coach-section p{
-      max-width:760px;
-      margin:0 auto 22px;
-      color:var(--muted);
-      line-height:1.8;
-      font-size:17px;
-    }
-    .ai-coach-btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding:16px 28px;
-      border-radius:22px;
-      background:linear-gradient(135deg,#16a34a,#f59e0b);
-      color:#fff;
-      font-weight:900;
-      font-size:20px;
-      box-shadow:0 16px 32px rgba(21,145,92,.24);
-   }
+    
 
     .learning-path{margin-top:34px;background:linear-gradient(135deg,#ffffff,#f0fff5);border:1px solid #cfe8d8;border-radius:30px;padding:32px;box-shadow:var(--shadow)}.path-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:22px}@media(max-width:900px){.path-grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.path-grid{grid-template-columns:1fr}}.path-step{background:#fff;border:1px solid #e1eee5;border-radius:20px;padding:18px 14px;text-align:center;box-shadow:0 10px 22px rgba(18,49,38,.06)}.path-step .emoji{font-size:34px;margin-bottom:8px}.path-step strong{display:block;font-size:16px;margin-bottom:6px}.path-step span{font-size:13px;color:var(--muted);line-height:1.5}
     .why{margin-top:24px;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}@media(max-width:900px){.why{grid-template-columns:1fr}}.why-card{background:#fff;border:1px solid var(--line);border-radius:26px;padding:26px;box-shadow:var(--shadow)}.why-card h2{margin:0 0 12px;font-size:28px}.why-card p,.why-card li{color:var(--muted);line-height:1.85}.quote{background:linear-gradient(135deg,#ecfdf5,#fff);border-left:6px solid var(--green);border-radius:22px;padding:22px;font-size:20px;line-height:1.65;font-weight:900}footer{text-align:center;padding:26px 16px 46px;color:var(--muted);line-height:1.8}
@@ -91,27 +72,13 @@
                          電商經營到創業模擬，
 
                          透過 AI 建立完整品牌與電商能力。</p>
-    <div class="hero-actions"><a href="#tools">探索五大工具</a><a href="#path">學習路徑</a><a href="#why">平台定位</a></div>
+    <div class="hero-actions"><a href="#tools">探索七大工具</a><a href="#path">學習路徑</a><a href="#why">平台定位</a></div>
     <div class="top-actions"><a class="pill-btn" href="https://r91628120.github.io/ai-agri-education/#home">🌱 回 AI農業教育平台</a></div>
-
-   <section class="ai-coach-section">
-       <h2>🤖 AI農創教練｜品牌與電商整合入口</h2>
-         <p>
-           完成農人故事、農場體驗、包裝設計、商品攝影、社群行銷與創業推演後，
-           可將成果整理貼到 AI農創教練，進一步產生完整品牌企劃、商品頁文案、社群貼文與圖片 Prompt。
-         </p>
-           <a class="ai-coach-btn"
-             target="_blank"
-             href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach">
-               🚀 開啟 AI農創教練
-           </a>
-    </section>
-
 
   </header>
   <main>
     <section id="tools">
-      <div class="section-title"><h2>六大品牌與電商學習工具</h2><p>這不是五個分散的小工具，而是一條完整的農創品牌學習路徑：認識農民、設計體驗、建立品牌、拍出商品、模擬創業。</p></div>
+      <div class="section-title"><h2>七大品牌與電商學習工具</h2><p>這不是七個分散的小工具，而是一條完整的農創品牌學習路徑：認識農民、設計體驗、建立品牌、拍出商品、模擬創業。</p></div>
       <div class="cards">
         <article class="tool-card green"><div class="tool-content"><div class="tag">地方創生</div><div class="icon">🌾</div><h3>農人足跡地圖</h3><p>探索全台農民故事與品牌足跡，學習產地文化、地方創生與青農品牌精神。</p><div class="features"><div class="feature">農民故事</div><div class="feature">品牌地圖</div><div class="feature">產地探索</div><div class="feature">地方創生</div></div><a class="card-btn" href="map/">探索農人故事 →</a></div></article>
         <article class="tool-card orange"><div class="tool-content"><div class="tag">體驗設計</div><div class="icon">🎪</div><h3>農場體驗與食農教育設計師</h3><p>設計親子農場、採果體驗、食農教育、校外教學與農村旅遊活動。</p><div class="features"><div class="feature">活動企劃</div><div class="feature">流程設計</div><div class="feature">教案規劃</div><div class="feature">宣傳文案</div></div><a class="card-btn" href="farm-experience/">開始設計活動 →</a></div></article>
