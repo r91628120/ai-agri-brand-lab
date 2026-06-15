@@ -1,1 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI農產品包裝設計師｜AI Agri Packaging Designer</title>
+  <link rel="stylesheet" href="style.css?v=1.0" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home">
+      <span class="logo">🎨</span>
+      <span><strong>AI農產品包裝設計師</strong><small>AI Agri Packaging Designer</small></span>
+    </a>
+    <nav>
+      <a href="#designer">開始設計</a>
+      <a href="#cases">案例卡</a>
+      <a href="#learning">學習重點</a>
+      <a href="https://r91628120.github.io/ai-agri-brand-lab/">回農創品牌實驗室</a>
+    </nav>
+  </header>
 
+  <main id="home">
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">PACKAGING DESIGN × BRAND STORY × AI PROMPT</p>
+        <h1>🎨 AI農產品包裝設計師</h1>
+        <h2>輸入少量資料，AI推演完整品牌包裝提案</h2>
+        <p>從農產品名稱、產地、特色與目標客群出發，自動產生品牌命名、品牌故事、包裝文案、Logo Prompt、包裝設計 Prompt 與電商文案。</p>
+        <div class="actions">
+          <a class="btn" href="#designer">開始包裝設計 →</a>
+          <a class="btn ghost" href="#cases">查看案例卡</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="formula">核心流程</div>
+        <strong>產品 × 產地 × 客群 × 風格 = 品牌包裝提案</strong>
+        <div class="mini-grid">
+          <div>🏷️<b>命名</b></div><div>📖<b>故事</b></div><div>🎨<b>Logo</b></div><div>📦<b>包裝</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases" class="section soft">
+      <p class="eyebrow">SCENARIO CARDS</p>
+      <h2>一鍵帶入農產品案例</h2>
+      <p class="muted">先從案例開始，再讓學生修改產品、產地、特色與風格，觀察品牌定位如何改變。</p>
+      <div class="case-grid">
+        <button onclick="loadCase('mango')">🥭 芒果乾｜屏東枋山｜精品送禮</button>
+        <button onclick="loadCase('rice')">🌾 米禮盒｜花東縱谷｜地方創生</button>
+        <button onclick="loadCase('tea')">🍵 高山茶｜阿里山｜質感伴手禮</button>
+        <button onclick="loadCase('pineapple')">🍍 鳳梨酥｜台南關廟｜觀光電商</button>
+      </div>
+    </section>
+
+    <section id="designer" class="section designer-grid">
+      <div class="panel form-panel">
+        <p class="eyebrow">BRAND INPUT</p>
+        <h2>AI農產品包裝設計師</h2>
+        <p class="muted">少輸入、多推演、重理解：讓學生從資料看懂品牌包裝設計邏輯。</p>
+
+        <label>產品名稱</label>
+        <input id="productName" value="芒果乾" placeholder="例如：芒果乾、米禮盒、茶葉、鳳梨酥" />
+
+        <label>原料／作物</label>
+        <input id="cropName" value="愛文芒果" placeholder="例如：愛文芒果、台稉9號、烏龍茶" />
+
+        <label>產地</label>
+        <input id="origin" value="屏東縣枋山鄉" placeholder="例如：屏東枋山、花東縱谷、阿里山" />
+
+        <label>產品特色</label>
+        <textarea id="features">天然果香、低溫烘焙、無添加色素、適合送禮。</textarea>
+
+        <div class="two-col">
+          <div>
+            <label>目標客群</label>
+            <select id="target">
+              <option>年輕族群</option><option selected>送禮市場</option><option>親子家庭</option><option>企業團購</option><option>觀光伴手禮</option><option>高端精品客群</option>
+            </select>
+          </div>
+          <div>
+            <label>包裝形式</label>
+            <select id="packageType">
+              <option>夾鏈袋</option><option selected>禮盒</option><option>玻璃罐</option><option>紙盒</option><option>手提盒</option><option>電商外盒</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <label>品牌風格</label>
+            <select id="styleType">
+              <option selected>高級精品風</option><option>日系文青風</option><option>自然小農風</option><option>活潑親子風</option><option>地方創生風</option><option>極簡現代風</option>
+            </select>
+          </div>
+          <div>
+            <label>建議售價</label>
+            <input id="price" value="399" placeholder="例如：399" />
+          </div>
+        </div>
+
+        <div class="check-box">
+          <h3>想強調的品牌元素</h3>
+          <label><input type="checkbox" value="產地故事" checked> 產地故事</label>
+          <label><input type="checkbox" value="農人精神" checked> 農人精神</label>
+          <label><input type="checkbox" value="天然無添加" checked> 天然無添加</label>
+          <label><input type="checkbox" value="永續環保"> 永續環保</label>
+          <label><input type="checkbox" value="高級送禮" checked> 高級送禮</label>
+          <label><input type="checkbox" value="地方創生"> 地方創生</label>
+        </div>
+
+        <div class="button-row">
+          <button onclick="generateDesign()">產生包裝提案</button>
+          <button class="secondary" onclick="clearResult()">清除結果</button>
+        </div>
+      </div>
+
+      <aside class="panel guide-card">
+        <h3>📘 如何使用？</h3>
+        <details open><summary>① 輸入基本資料</summary><p>填入產品、產地、特色、客群與包裝形式，系統會推演品牌設計方向。</p></details>
+        <details><summary>② 品牌命名</summary><p>命名要讓人記得住，也要能連結產地、產品特色與情感。</p></details>
+        <details><summary>③ 包裝文案</summary><p>正面文案負責吸引目光，背面文案負責建立信任。</p></details>
+        <details><summary>④ Logo 與包裝 Prompt</summary><p>可直接複製到 ChatGPT 或 AI 繪圖工具，協助生成視覺草圖。</p></details>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div id="result" class="result-card muted">請輸入資料後按下「產生包裝提案」。</div>
+    </section>
+
+    <section id="learning" class="section learning">
+      <p class="eyebrow">AI SIMULATION LEARNING</p>
+      <h2>這不是做圖，而是品牌包裝推演學習</h2>
+      <div class="learn-grid">
+        <div><span>01</span><h3>產品定位</h3><p>看懂產品要賣給誰。</p></div>
+        <div><span>02</span><h3>品牌故事</h3><p>把產地與農人精神轉化成價值。</p></div>
+        <div><span>03</span><h3>包裝設計</h3><p>用色彩、文案與形式建立信任感。</p></div>
+        <div><span>04</span><h3>行銷轉換</h3><p>讓包裝成為電商與社群銷售素材。</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-title">🚀 AI農創品牌實驗室</div>
+      <p>從農人故事、農場體驗、品牌包裝、商品攝影到創業推演，建立完整的農創品牌學習路徑。</p>
+      <div class="footer-links">
+        <a href="https://r91628120.github.io/ai-agri-brand-lab/map/">🌾 農人足跡地圖</a>
+        <a href="https://r91628120.github.io/ai-agri-brand-lab/farm-experience/">🎪 農場體驗設計師</a>
+        <a href="https://r91628120.github.io/ai-agri-brand-lab/packaging-designer/">🎨 農產品包裝設計師</a>
+        <span>📸 農產品攝影師｜規劃中</span>
+        <a href="https://r91628120.github.io/ai-agri-brand-lab/business-simulator/">💰 創業經營推演器</a>
+      </div>
+      <p class="note">AI 產生內容仍需教師與學生查證、修正與再創作。</p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1.0"></script>
+</body>
+</html>
