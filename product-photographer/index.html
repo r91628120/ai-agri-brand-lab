@@ -1,1 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI農產品攝影師｜AI Agri Product Photographer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
 
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">📸</div>
+      <div>
+        <h1>AI農產品攝影師</h1>
+        <p>AI Agri Product Photographer</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#start">開始攝影</a>
+      <a href="#cases">案例卡</a>
+      <a href="#learning">學習重點</a>
+      <a href="../index.html">回農創品牌實驗室</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">PRODUCT PHOTO × BRAND IMAGE × AI PROMPT</p>
+        <h2>📸 AI農產品攝影師</h2>
+        <h3>輸入少量資料，AI推演完整商品攝影提案</h3>
+        <p>
+          從商品名稱、產地、特色與品牌風格出發，自動產生電商主圖、
+          情境攝影、社群貼文、禮盒攝影與食農教育攝影 Prompt。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#start" class="btn primary">開始商品攝影 →</a>
+          <a href="#cases" class="btn secondary">查看案例卡</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="formula-box">
+          <span>核心流程</span>
+          <strong>產品 × 風格 × 場景 = 攝影提案</strong>
+          <small>讓農產品從「被看見」到「被想買」</small>
+        </div>
+
+        <div class="feature-grid">
+          <div>🛒<br>電商主圖</div>
+          <div>🌿<br>情境攝影</div>
+          <div>📱<br>社群素材</div>
+          <div>🎁<br>禮盒攝影</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cases" class="section cases-section">
+      <p class="eyebrow">SCENARIO CARDS</p>
+      <h2>一鍵帶入農產品攝影案例</h2>
+      <p>先從案例開始，再讓學生修改商品、產地與風格，觀察攝影定位如何改變。</p>
+
+      <div class="case-grid">
+        <button onclick="loadCase('tea')">🍵 高山茶｜精品送禮</button>
+        <button onclick="loadCase('mango')">🥭 芒果乾｜熱帶水果</button>
+        <button onclick="loadCase('rice')">🌾 米禮盒｜地方創生</button>
+        <button onclick="loadCase('coffee')">☕ 咖啡豆｜文青質感</button>
+      </div>
+    </section>
+
+    <section id="start" class="section two-column">
+      <div class="input-card">
+        <p class="eyebrow">PHOTO INPUT</p>
+        <h2>AI農產品攝影師</h2>
+        <p>少輸入、多推演、重理解：讓學生從資料看懂攝影行銷邏輯。</p>
+
+        <label>品牌名稱</label>
+        <input id="brandName" type="text" placeholder="例如：阿里山烏龍選" />
+
+        <label>商品名稱</label>
+        <input id="productName" type="text" placeholder="例如：高山茶禮盒" />
+
+        <label>作物／原料</label>
+        <input id="cropName" type="text" placeholder="例如：烏龍茶" />
+
+        <label>產地</label>
+        <input id="origin" type="text" placeholder="例如：嘉義阿里山" />
+
+        <label>產品特色</label>
+        <textarea id="features" placeholder="例如：高山冷冽茶香、手採茶葉、適合伴手禮"></textarea>
+
+        <div class="form-grid">
+          <div>
+            <label>包裝形式</label>
+            <select id="packageType">
+              <option>禮盒</option>
+              <option>紙盒</option>
+              <option>玻璃罐</option>
+              <option>袋裝</option>
+              <option>瓶裝</option>
+              <option>無包裝農產品</option>
+            </select>
+          </div>
+
+          <div>
+            <label>攝影風格</label>
+            <select id="styleType">
+              <option>高級精品風</option>
+              <option>自然產地風</option>
+              <option>文青清新風</option>
+              <option>電商白底風</option>
+              <option>送禮質感風</option>
+              <option>食農教育風</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="checkbox-card">
+          <h3>想強調的攝影元素</h3>
+          <label><input type="checkbox" value="自然光" checked> 自然光</label>
+          <label><input type="checkbox" value="產地故事" checked> 產地故事</label>
+          <label><input type="checkbox" value="禮盒質感" checked> 禮盒質感</label>
+          <label><input type="checkbox" value="農產品原料"> 農產品原料</label>
+          <label><input type="checkbox" value="人物手作"> 人物手作</label>
+          <label><input type="checkbox" value="食農教育"> 食農教育</label>
+        </div>
+
+        <div class="button-row">
+          <button class="btn primary" onclick="generatePhotoPlan()">產生攝影提案</button>
+          <button class="btn secondary" onclick="clearResult()">清除結果</button>
+        </div>
+      </div>
+
+      <aside class="help-card">
+        <h3>📘 如何使用？</h3>
+        <details open>
+          <summary>① 輸入基本資料</summary>
+          <p>填入品牌、商品、作物、產地與特色。</p>
+        </details>
+        <details>
+          <summary>② 選擇攝影風格</summary>
+          <p>不同風格會影響光線、背景、構圖與品牌氛圍。</p>
+        </details>
+        <details>
+          <summary>③ 複製 Prompt</summary>
+          <p>把產生的 Prompt 貼到 AI農創教練或影像生成工具。</p>
+        </details>
+        <details>
+          <summary>④ AI農創教練</summary>
+          <p>可進一步產生攝影企劃、社群文案與商品頁內容。</p>
+        </details>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div id="result" class="result-card muted">
+        請輸入資料後按下「產生攝影提案」。
+      </div>
+    </section>
+
+    <section id="learning" class="section learning">
+      <p class="eyebrow">AI SIMULATION LEARNING</p>
+      <h2>這不是拍照工具，而是農產品影像推演學習</h2>
+
+      <div class="learning-grid">
+        <div>
+          <span>01</span>
+          <h3>觀察</h3>
+          <p>看懂商品、光線、背景與構圖差異。</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h3>分析</h3>
+          <p>理解照片如何影響品牌質感與購買意願。</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h3>應用</h3>
+          <p>將攝影成果轉化為電商圖片與社群素材。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>📸 AI農產品攝影師</h3>
+    <p>屬於 AI農創品牌實驗室｜AI Agri Brand Lab</p>
+    <div class="footer-links">
+      <a href="../map/">🌾 農人足跡地圖</a>
+      <a href="../farm-experience/">🎪 農場體驗設計師</a>
+      <a href="../packaging-designer/">🎨 包裝設計師</a>
+      <a href="../business-simulator/">💰 創業經營推演器</a>
+    </div>
+  </footer>
+
+  <script src="script.js?v=1.0"></script>
+</body>
+</html>

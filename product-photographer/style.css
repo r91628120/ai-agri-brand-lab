@@ -1,0 +1,182 @@
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+  color:#3f2b08;
+  background:linear-gradient(135deg,#fffaf1 0%,#fff6df 45%,#fffdf7 100%);
+  line-height:1.8;
+}
+a{text-decoration:none;color:inherit}
+.site-header{
+  position:sticky;top:0;z-index:99;
+  height:86px;padding:0 9%;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.88);backdrop-filter:blur(14px);
+  border-bottom:1px solid #f3dfbd;
+}
+.brand{display:flex;align-items:center;gap:14px}
+.logo{
+  width:52px;height:52px;border-radius:18px;
+  display:grid;place-items:center;font-size:28px;
+  background:linear-gradient(135deg,#10a6d8,#38c7f4);
+  box-shadow:0 14px 30px rgba(16,166,216,.25);
+}
+.brand h1{font-size:18px;margin:0;font-weight:900}
+.brand p{margin:0;color:#8a7350;font-size:13px}
+nav{display:flex;gap:24px;font-weight:800;font-size:15px}
+nav a:hover{color:#0ea5c6}
+
+main{overflow:hidden}
+.hero{
+  min-height:720px;padding:150px 9% 110px;
+  display:grid;grid-template-columns:1.2fr .9fr;gap:70px;align-items:center;
+  background:
+    radial-gradient(circle at 15% 75%,rgba(16,166,216,.16),transparent 28%),
+    radial-gradient(circle at 88% 10%,rgba(255,204,74,.35),transparent 30%);
+}
+.eyebrow{
+  color:#ff6b00;font-weight:900;letter-spacing:3px;
+  font-size:15px;text-transform:uppercase;margin:0 0 18px;
+}
+.hero h2,.section h2{
+  font-size:56px;line-height:1.15;margin:0 0 18px;
+  letter-spacing:-2px;color:#3b2705;font-weight:950;
+}
+.hero h3{
+  font-size:34px;margin:0 0 24px;color:#8a4b00;font-weight:900;
+}
+.hero p,.section p{font-size:17px;color:#66563e}
+.hero-actions,.button-row{display:flex;gap:16px;flex-wrap:wrap;margin-top:30px}
+.btn,button{
+  border:0;cursor:pointer;border-radius:18px;
+  padding:15px 28px;font-weight:900;font-size:16px;
+  transition:.25s ease;
+}
+.btn.primary,button.primary{
+  color:white;background:linear-gradient(135deg,#0ea5c6,#38bdf8);
+  box-shadow:0 16px 32px rgba(14,165,198,.24);
+}
+.btn.secondary,button.secondary{
+  color:#8a4b00;background:white;border:1px solid #efd9b8;
+}
+.btn:hover,button:hover{transform:translateY(-2px)}
+
+.hero-card,.input-card,.help-card,.result-card,.learning-grid>div{
+  background:rgba(255,255,255,.86);
+  border:1px solid #f0dcc0;border-radius:32px;
+  box-shadow:0 24px 60px rgba(91,58,12,.08);
+}
+.hero-card{padding:30px}
+.formula-box{
+  padding:28px;border-radius:24px;color:white;
+  background:linear-gradient(135deg,#064e63,#0ea5c6);
+}
+.formula-box span{display:block;font-weight:900;margin-bottom:10px}
+.formula-box strong{display:block;font-size:26px;line-height:1.4}
+.formula-box small{display:block;margin-top:10px;color:#e0f7ff}
+.feature-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:20px;
+}
+.feature-grid div{
+  padding:28px 18px;text-align:center;border-radius:22px;
+  background:#f0fbff;font-weight:900;color:#064e63;
+}
+
+.section{padding:90px 9%}
+.cases-section{background:#fff3dc}
+.case-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:34px;
+}
+.case-grid button{
+  text-align:left;background:white;border:1px solid #f0dcc0;
+  box-shadow:0 14px 34px rgba(91,58,12,.07);
+}
+.two-column{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:36px;align-items:start;
+}
+.input-card,.help-card{padding:34px}
+label{display:block;font-weight:900;margin:18px 0 8px;color:#3b2705}
+input,textarea,select{
+  width:100%;border:1px solid #efd8bb;border-radius:16px;
+  padding:15px 16px;font-size:16px;background:white;color:#3f2b08;
+  outline:none;font-family:inherit;
+}
+textarea{min-height:110px;resize:vertical}
+input:focus,textarea:focus,select:focus{
+  border-color:#0ea5c6;box-shadow:0 0 0 4px rgba(14,165,198,.12);
+}
+.form-grid,.result-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:18px;
+}
+.checkbox-card{
+  margin-top:24px;padding:22px;border-radius:24px;
+  background:#fff8e8;border:1px solid #f2dfbb;
+  display:grid;grid-template-columns:repeat(2,1fr);gap:10px 18px;
+}
+.checkbox-card h3{grid-column:1/-1;margin:0 0 8px}
+.checkbox-card label{margin:0}
+.help-card{position:sticky;top:110px}
+details{border-bottom:1px solid #ecd7b5;padding:14px 0}
+summary{font-weight:900;cursor:pointer}
+details p{margin:10px 0 0;font-size:15px}
+
+.result-card{padding:34px}
+.result-card.muted{color:#8a7350;background:#fff8ea}
+.result-box{
+  padding:24px;border-radius:22px;border:1px solid #efd8bb;
+  background:white;min-height:160px;
+}
+.result-box h3{margin:0 0 12px;color:#8a4b00}
+.prompt{
+  white-space:pre-wrap;background:#fff7e8;border-radius:18px;
+  padding:18px;margin:12px 0;font-size:15px;color:#4a3410;
+}
+.copy-btn{
+  padding:12px 20px;border-radius:14px;color:white;
+  background:linear-gradient(135deg,#ff7a18,#ffc107);
+}
+.agri-coach-box{
+  grid-column:1/-1;background:#fff7d7;border:2px solid #ffc107;
+}
+.coach-btn{
+  display:inline-block;margin-top:14px;padding:15px 24px;border-radius:16px;
+  color:white;font-weight:900;background:linear-gradient(135deg,#16a34a,#22c55e);
+}
+
+.learning{background:#fffaf2}
+.learning-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:34px;
+}
+.learning-grid>div{padding:30px}
+.learning-grid span{
+  display:inline-grid;place-items:center;width:42px;height:42px;border-radius:14px;
+  background:#fff0d5;color:#ff6b00;font-weight:900;
+}
+.learning-grid h3{font-size:22px;margin:22px 0 8px}
+
+footer{
+  padding:44px 9%;text-align:center;color:white;
+  background:#4a2b00;
+}
+footer h3{margin:0 0 8px}
+.footer-links{
+  display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:18px;
+}
+.footer-links a{
+  padding:9px 16px;border-radius:999px;
+  background:rgba(255,255,255,.12);font-weight:800;
+}
+
+@media(max-width:900px){
+  .site-header{height:auto;padding:16px 6%;align-items:flex-start}
+  nav{display:none}
+  .hero,.two-column{grid-template-columns:1fr}
+  .hero{padding:90px 6% 70px;min-height:auto}
+  .section{padding:64px 6%}
+  .hero h2,.section h2{font-size:38px}
+  .hero h3{font-size:24px}
+  .case-grid,.form-grid,.result-grid,.learning-grid{grid-template-columns:1fr}
+  .checkbox-card{grid-template-columns:1fr}
+  .help-card{position:static}
+}
