@@ -767,3 +767,117 @@ grid-template-columns:1fr;
     grid-template-columns: 1fr;
   }
 }
+
+.site-footer{
+      margin-top:24px;
+      padding:0 18px 52px;
+      color:var(--ink);
+    }
+    .footer-inner{
+      max-width:1180px;
+      margin:0 auto;
+      background:linear-gradient(135deg,rgba(255,255,255,.96),#f3fff7);
+      border:1px solid var(--line);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      padding:26px;
+      text-align:left;
+    }
+    .footer-brand{
+      display:grid;
+      grid-template-columns:1.1fr .9fr;
+      gap:18px;
+      align-items:start;
+      margin-bottom:20px;
+    }
+    @media(max-width:850px){.footer-brand{grid-template-columns:1fr}}
+    .footer-title{
+      font-size:28px;
+      font-weight:900;
+      margin-bottom:8px;
+      color:#0f6b45;
+    }
+    .footer-subtitle{
+      color:var(--muted);
+      line-height:1.85;
+      margin:0;
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:14px;
+      margin-top:18px;
+    }
+    @media(max-width:1000px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:620px){.footer-grid{grid-template-columns:1fr}}
+    .footer-box{
+      background:#fff;
+      border:1px solid #e2eee6;
+      border-radius:22px;
+      padding:16px;
+      min-height:170px;
+    }
+    .footer-box h3{
+      margin:0 0 10px;
+      font-size:18px;
+      color:#123126;
+    }
+    .footer-box ul{
+      margin:0;
+      padding-left:20px;
+      color:var(--muted);
+      line-height:1.85;
+    }
+    .footer-links{
+      display:flex;
+      flex-wrap:wrap;
+      gap:9px;
+      margin-top:12px;
+    }
+    .footer-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:#168153;
+      color:#fff;
+      font-weight:900;
+      font-size:14px;
+    }
+    .footer-link.secondary{
+      background:#fff;
+      color:#168153;
+      border:1px solid #cfe8d8;
+    }
+    .footer-link.disabled{
+      background:#f1f5f9;
+      color:#64748b;
+      border:1px dashed #cbd5e1;
+      cursor:not-allowed;
+    }
+
+    .footer-link.admin-link{
+      background:#f8fafc;
+      color:#64748b;
+      border:1px dashed #cbd5e1;
+      font-size:13px;
+      opacity:.75;
+    }
+
+    .footer-link.admin-link:hover{
+      opacity:1;
+      color:#168153;
+      border-color:#cfe8d8;
+    }
+
+    .footer-note{
+      margin-top:20px;
+      padding-top:16px;
+      border-top:1px solid #dbeadd;
+      color:var(--muted);
+      text-align:center;
+      line-height:1.8;
+      font-size:14px;
+    }
