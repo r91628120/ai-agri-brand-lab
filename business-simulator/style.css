@@ -1,3 +1,10 @@
+:root{
+  --ink:#123126;
+  --muted:#5b7368;
+  --line:#dbeadd;
+  --shadow:0 18px 45px rgba(18,49,38,.10);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
