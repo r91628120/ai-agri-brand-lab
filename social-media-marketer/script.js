@@ -5,6 +5,44 @@ function getValue(id) {
   return document.getElementById(id).value.trim();
 }
 
+   const socialCases = {
+  mango: {
+    brand: "南國果語",
+    product: "愛文芒果乾禮盒",
+    feature: "屏東枋山愛文芒果、天然果香、低溫烘焙、色澤金黃、適合送禮、適合社群分享"
+  },
+  tea: {
+    brand: "阿里山烏龍選",
+    product: "高山茶禮盒",
+    feature: "阿里山高山茶、手採茶葉、冷冽茶香、回甘清香、精品伴手禮、適合企業送禮"
+  },
+  coffee: {
+    brand: "佳農春凍咖啡",
+    product: "精品咖啡豆",
+    feature: "屏東佳冬平地咖啡、手沖香氣、在地小農、文青質感、適合社群分享、禮盒包裝"
+  },
+  pineapple: {
+    brand: "鳳梨甜心",
+    product: "鳳梨酥禮盒",
+    feature: "台灣鳳梨、金黃酥皮、酸甜果餡、節慶送禮、觀光伴手禮、適合電商販售"
+  }
+};
+
+function loadCase(caseKey) {
+  const data = socialCases[caseKey];
+  if (!data) return;
+
+  document.getElementById("brand").value = data.brand;
+  document.getElementById("product").value = data.product;
+  document.getElementById("feature").value = data.feature;
+
+  document.querySelector(".generator-section").scrollIntoView({
+    behavior: "smooth"
+  });
+}
+
+
+
 function copyText(id) {
   const text = document.getElementById(id).innerText;
   navigator.clipboard.writeText(text).then(() => {
