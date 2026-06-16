@@ -210,15 +210,19 @@ ${coachPrompt}
 
 <div id="socialResult">${result}</div>
 
-<button class="copy-btn" onclick="copyText('socialResult')">
-  一鍵複製全部社群內容
-</button>
+<div class="result-actions">
+  <button class="copy-btn" onclick="copyText('socialResult')">
+    一鍵複製全部社群內容
+  </button>
 
-<br><br>
+  <a class="coach-btn" href="${coachUrl}" target="_blank">
+    🚀 開啟 AI農創教練
+  </a>
 
-<a class="coach-btn" href="${coachUrl}" target="_blank">
-  🚀 開啟 AI農創教練
-</a>
+  <button class="clear-btn" onclick="clearResult()">
+    清除結果
+  </button>
+</div>
 `;
 }
 
@@ -228,3 +232,14 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", generateSocialContent);
   }
 });
+
+function clearForm() {
+  document.getElementById("brand").value = "";
+  document.getElementById("product").value = "";
+  document.getElementById("feature").value = "";
+}
+
+function clearResult() {
+  document.getElementById("resultBox").innerHTML =
+    "請輸入資料後按下「產生社群內容」。";
+}
