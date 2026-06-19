@@ -161,3 +161,146 @@ footer p{opacity:.9}
   .result-actions{flex-direction:column}
   .result-action-btn{width:100%}
 }
+
+/* Visual Learning Section */
+
+.visual-section{
+  background:linear-gradient(135deg,#f0fff7,#fffdf7);
+  text-align:center;
+}
+
+.visual-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:28px;
+  align-items:stretch;
+  margin-top:34px;
+}
+
+.mock-product-page,
+.analysis-panel{
+  background:white;
+  border:1px solid #d8efe4;
+  border-radius:32px;
+  padding:28px;
+  box-shadow:0 24px 60px rgba(16,53,43,.08);
+}
+
+.mock-hero{
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:22px;
+  align-items:center;
+  text-align:left;
+}
+
+.mock-image{
+  min-height:280px;
+  border-radius:26px;
+  background:
+    radial-gradient(circle at 70% 25%,rgba(250,204,21,.35),transparent 28%),
+    linear-gradient(135deg,#d9f99d,#ecfdf5);
+  display:grid;
+  place-items:center;
+  font-size:92px;
+}
+
+.mock-info h3{
+  margin:12px 0;
+  font-size:28px;
+  line-height:1.25;
+  color:#10352b;
+}
+
+.mock-info p{
+  color:#52675e;
+  font-size:16px;
+}
+
+.mock-info strong{
+  display:block;
+  margin:16px 0;
+  font-size:30px;
+  color:#0f766e;
+}
+
+.mock-info button{
+  width:100%;
+  color:white;
+  background:linear-gradient(135deg,#0f766e,#14b8a6);
+}
+
+.mock-tag{
+  display:inline-flex;
+  padding:7px 12px;
+  border-radius:999px;
+  background:#dcfce7;
+  color:#0f766e;
+  font-weight:950;
+  font-size:13px;
+}
+
+.mock-points{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:22px;
+}
+
+.mock-points div{
+  padding:14px;
+  border-radius:18px;
+  background:#f4fff9;
+  color:#10352b;
+  font-weight:950;
+}
+
+.analysis-panel{
+  display:grid;
+  gap:16px;
+}
+
+.analysis-item{
+  display:flex;
+  gap:16px;
+  align-items:flex-start;
+  text-align:left;
+  padding:18px;
+  border-radius:22px;
+  background:#f4fff9;
+  border:1px solid #d8efe4;
+}
+
+.analysis-item span{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:#0f766e;
+  color:white;
+  font-weight:950;
+  flex-shrink:0;
+}
+
+.analysis-item h3{
+  margin:0 0 6px;
+  color:#10352b;
+}
+
+.analysis-item p{
+  margin:0;
+  color:#52675e;
+  font-size:15px;
+}
+
+@media(max-width:900px){
+  .visual-grid,
+  .mock-hero{
+    grid-template-columns:1fr;
+  }
+
+  .mock-points{
+    grid-template-columns:1fr;
+  }
+}
