@@ -261,17 +261,23 @@ function generatePhotoPlan() {
           產生更完整的攝影企劃、商品文案與社群行銷內容。
         </p>
 
-        <div class="prompt" id="coachPrompt">${coachPrompt}</div>
+      <div class="prompt" id="coachPrompt">${coachPrompt}</div>
 
-        <button class="copy-btn" onclick="copyText('coachPrompt')">一鍵複製完整攝影企劃</button>
+        <div class="result-actions">
+          <button class="result-action-btn copy-btn" onclick="copyText('coachPrompt')">
+             一鍵複製完整攝影企劃
+          </button>
 
-        <br>
+          <a class="result-action-btn coach-btn"
+           href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach"
+             target="_blank">
+            🚀 開啟 AI農創教練
+          </a>
 
-        <a class="coach-btn"
-          href="https://chatgpt.com/g/g-6a2d733aeac08191be56f59a8653cdae-ainong-chuang-jiao-lian-ai-agri-brand-coach"
-          target="_blank">
-          🚀 開啟 AI農創教練
-        </a>
+          <button class="result-action-btn clear-mini-btn" onclick="clearResult()">
+            清除結果
+          </button>
+        </div>
       </div>
     </div>
   `;
