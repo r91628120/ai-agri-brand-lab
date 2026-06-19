@@ -1,1 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI農產品電商經營師｜AI Agri E-commerce Manager</title>
+  <meta name="description" content="協助學生學習農產品商品頁設計、電商文案、促銷活動與顧客分析，建立農產品電商經營思維。" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo">🛒</div>
+      <div>
+        <h1>AI農產品電商經營師</h1>
+        <p>AI Agri E-commerce Manager</p>
+      </div>
+    </div>
+
+    <nav>
+      <a href="#tools">學習工具</a>
+      <a href="#cases">案例卡</a>
+      <a href="#generator">開始經營</a>
+      <a href="../index.html">回品牌實驗室</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <p class="eyebrow">PRODUCT PAGE × COPYWRITING × CUSTOMER STRATEGY</p>
+        <h2>🛒 AI農產品電商經營師</h2>
+        <h3>讓農產品從「好產品」變成「會成交的商品頁」</h3>
+        <p>
+          從品牌名稱、產品特色、目標客群與售價出發，協助學生推演商品頁設計、
+          電商文案、促銷活動、顧客分析與轉換策略，建立完整農產品電商經營能力。
+        </p>
+
+        <div class="hero-actions">
+          <a href="#generator" class="btn primary">開始電商經營 →</a>
+          <a href="#cases" class="btn secondary">查看案例卡</a>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="formula-box">
+          <span>核心流程</span>
+          <strong>商品 × 客群 × 文案 × 活動 = 電商轉換</strong>
+          <small>讓學生看懂商品頁背後的品牌與行銷邏輯</small>
+        </div>
+
+        <div class="feature-grid">
+          <div>📦<br>商品頁設計</div>
+          <div>📝<br>電商文案</div>
+          <div>🎁<br>促銷活動</div>
+          <div>👥<br>顧客分析</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="section tools-section">
+      <p class="eyebrow">E-COMMERCE TOOLS</p>
+      <h2>四大電商經營工具</h2>
+      <p>從商品頁到促銷企劃，讓學生理解農產品如何在線上被看見、被理解、被購買。</p>
+
+      <div class="tool-grid">
+        <article class="tool-card green">
+          <div class="tool-icon">📦</div>
+          <h3>商品頁設計</h3>
+          <p>規劃商品標題、賣點、內容區塊與購買理由。</p>
+          <ul>
+            <li>商品標題</li>
+            <li>賣點排序</li>
+            <li>內容架構</li>
+            <li>購買理由</li>
+          </ul>
+        </article>
+
+        <article class="tool-card teal">
+          <div class="tool-icon">📝</div>
+          <h3>電商文案</h3>
+          <p>產生商品頁標語、短文案、長文案與導購文案。</p>
+          <ul>
+            <li>主標語</li>
+            <li>商品介紹</li>
+            <li>導購文案</li>
+            <li>FAQ</li>
+          </ul>
+        </article>
+
+        <article class="tool-card amber">
+          <div class="tool-icon">🎁</div>
+          <h3>促銷活動</h3>
+          <p>設計節慶、團購、滿額、試吃與回購活動。</p>
+          <ul>
+            <li>節慶促銷</li>
+            <li>滿額活動</li>
+            <li>團購方案</li>
+            <li>回購設計</li>
+          </ul>
+        </article>
+
+        <article class="tool-card blue">
+          <div class="tool-icon">👥</div>
+          <h3>顧客分析</h3>
+          <p>分析目標客群、購買動機、疑慮與溝通策略。</p>
+          <ul>
+            <li>客群輪廓</li>
+            <li>購買動機</li>
+            <li>顧客疑慮</li>
+            <li>轉換策略</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="cases" class="section cases-section">
+      <p class="eyebrow">SCENARIO CARDS</p>
+      <h2>一鍵帶入電商經營案例</h2>
+      <p>先用案例理解電商邏輯，再讓學生修改客群、售價與促銷方式。</p>
+
+      <div class="case-grid">
+        <button onclick="loadCase('mango')">🥭 芒果乾禮盒｜送禮客群</button>
+        <button onclick="loadCase('tea')">🍵 高山茶禮盒｜企業送禮</button>
+        <button onclick="loadCase('coffee')">☕ 精品咖啡豆｜文青客群</button>
+        <button onclick="loadCase('rice')">🌾 米禮盒｜家庭客群</button>
+      </div>
+    </section>
+
+    <section id="generator" class="section two-column">
+      <div class="input-card">
+        <p class="eyebrow">E-COMMERCE INPUT</p>
+        <h2>電商經營內容產生器</h2>
+        <p>輸入產品資料後，一鍵產生商品頁、文案、促銷與顧客分析。</p>
+
+        <label>品牌名稱</label>
+        <input id="brandName" type="text" placeholder="例如：南國果語" />
+
+        <label>商品名稱</label>
+        <input id="productName" type="text" placeholder="例如：愛文芒果乾禮盒" />
+
+        <label>作物／原料</label>
+        <input id="cropName" type="text" placeholder="例如：愛文芒果" />
+
+        <label>產地</label>
+        <input id="origin" type="text" placeholder="例如：屏東枋山" />
+
+        <label>產品特色</label>
+        <textarea id="features" placeholder="例如：天然果香、低溫烘焙、色澤金黃、適合送禮"></textarea>
+
+        <div class="form-grid">
+          <div>
+            <label>目標客群</label>
+            <select id="targetCustomer">
+              <option>送禮客群</option>
+              <option>家庭客群</option>
+              <option>年輕社群客群</option>
+              <option>企業採購客群</option>
+              <option>觀光伴手禮客群</option>
+              <option>健康養生客群</option>
+            </select>
+          </div>
+
+          <div>
+            <label>銷售通路</label>
+            <select id="salesChannel">
+              <option>品牌官網</option>
+              <option>蝦皮賣場</option>
+              <option>LINE社群團購</option>
+              <option>Facebook粉專</option>
+              <option>Instagram導購</option>
+              <option>市集與電商同步</option>
+            </select>
+          </div>
+
+          <div>
+            <label>建議售價</label>
+            <input id="price" type="text" placeholder="例如：480元" />
+          </div>
+
+          <div>
+            <label>促銷目標</label>
+            <select id="promotionGoal">
+              <option>提高首次購買</option>
+              <option>增加回購率</option>
+              <option>提高客單價</option>
+              <option>節慶送禮推廣</option>
+              <option>社群曝光導流</option>
+              <option>團購大量訂單</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="checkbox-card">
+          <h3>想強調的電商元素</h3>
+          <label><input type="checkbox" value="商品賣點" checked> 商品賣點</label>
+          <label><input type="checkbox" value="產地故事" checked> 產地故事</label>
+          <label><input type="checkbox" value="送禮價值" checked> 送禮價值</label>
+          <label><input type="checkbox" value="顧客痛點"> 顧客痛點</label>
+          <label><input type="checkbox" value="促銷活動"> 促銷活動</label>
+          <label><input type="checkbox" value="回購設計"> 回購設計</label>
+        </div>
+
+        <div class="button-row">
+          <button class="btn primary" onclick="generateEcommercePlan()">產生電商經營提案</button>
+          <button class="btn secondary" onclick="clearAll()">清除資料</button>
+        </div>
+      </div>
+
+      <aside class="help-card">
+        <h3>📘 如何使用？</h3>
+        <details open>
+          <summary>① 輸入產品資料</summary>
+          <p>填入品牌、商品、原料、產地、特色與售價。</p>
+        </details>
+        <details>
+          <summary>② 選擇客群與通路</summary>
+          <p>不同客群會影響商品頁文案、促銷方式與溝通語氣。</p>
+        </details>
+        <details>
+          <summary>③ 產生電商提案</summary>
+          <p>系統會產生商品頁架構、文案、促銷活動與顧客分析。</p>
+        </details>
+        <details>
+          <summary>④ 複製到 AI農創教練</summary>
+          <p>可進一步產出完整電商企劃、商品頁、社群導購與課程活動。</p>
+        </details>
+      </aside>
+    </section>
+
+    <section class="section result-section">
+      <div id="result" class="result-card muted">
+        請輸入資料後按下「產生電商經營提案」。
+      </div>
+    </section>
+
+    <section id="learning" class="section learning">
+      <p class="eyebrow">AI SIMULATION LEARNING</p>
+      <h2>這不是單純寫文案，而是農產品電商經營推演</h2>
+      <div class="learning-grid">
+        <div>
+          <span>01</span>
+          <h3>商品化</h3>
+          <p>把農產品特色轉換成消費者看得懂的商品價值。</p>
+        </div>
+        <div>
+          <span>02</span>
+          <h3>轉換率</h3>
+          <p>理解標題、圖片、賣點與活動如何影響購買決策。</p>
+        </div>
+        <div>
+          <span>03</span>
+          <h3>經營思維</h3>
+          <p>從一次成交走向回購、會員、口碑與品牌經營。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <h3>🛒 AI農產品電商經營師</h3>
+    <p>屬於 AI農創品牌實驗室｜AI Agri Brand Lab</p>
+    <div class="footer-links">
+      <a href="../index.html">🚀 回品牌實驗室</a>
+      <a href="../social-media-marketer/">📱 社群行銷師</a>
+      <a href="../product-photographer/">📸 產品攝影師</a>
+      <a href="../business-simulator/">💰 創業推演器</a>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
