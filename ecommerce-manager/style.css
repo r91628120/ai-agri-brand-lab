@@ -304,3 +304,23 @@ footer p{opacity:.9}
     grid-template-columns:1fr;
   }
 }
+
+/* Ad Prompt Box */
+
+.ad-prompt-box{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,#f0fdfa,#fffdf7);
+  border:2px solid #14b8a6;
+}
+
+.ad-prompt-box h3{
+  color:#0f766e;
+}
+
+.ad-prompt-box .copy-btn{
+  margin:0 0 18px;
+}
+
+.ad-prompt-box .prompt{
+  border:1px solid #d8efe4;
+}

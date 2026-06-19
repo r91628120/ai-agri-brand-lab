@@ -84,6 +84,7 @@ function generateEcommercePlan() {
   const salesChannel = $("salesChannel").value;
   const price = $("price").value.trim() || "依產品規格訂價";
   const promotionGoal = $("promotionGoal").value;
+  const adPlatform = $("adPlatform").value;
   const elements = getCheckedItems();
 
   const customerPain =
@@ -185,7 +186,123 @@ A：可優先放在 ${salesChannel}，再搭配社群貼文與短影音導流。
 Q4：如何提高顧客購買意願？
 A：建議強化商品照片、顧客評價、產地故事、促銷活動與清楚的購買按鈕。`;
 
-  const learningQuestions = `【高中職學生學習問題】
+   const shopeeAdPrompt = `【蝦皮商品主圖 Prompt】
+
+請使用我上傳的商品照片，設計一張適合蝦皮賣場使用的商品主圖。
+
+商品資訊：
+品牌名稱：${brand}
+商品名稱：${product}
+產地：${origin}
+作物／原料：${crop}
+商品特色：${features}
+建議售價：${price}
+促銷目標：${promotionGoal}
+
+圖片設計需求：
+1. 保留原本商品照片主體，不要改變商品外觀。
+2. 背景乾淨明亮，適合蝦皮商品搜尋頁顯示。
+3. 加入清楚但不過度複雜的販售文字。
+4. 圖片上可加入以下文字：
+   - ${product}
+   - ${origin} 產地直送
+   - ${price}
+   - 限時優惠／熱銷推薦
+5. 文字要大、清楚、容易閱讀。
+6. 商品要置中，價格資訊醒目。
+7. 風格：清爽、明亮、電商感、提高點擊率。
+8. 請輸出正方形 1:1 商品主圖。`;
+
+  const momoAdPrompt = `【momo商品廣告圖 Prompt】
+
+請使用我上傳的商品照片，設計一張適合 momo 購物平台風格的商品廣告圖。
+
+商品資訊：
+品牌名稱：${brand}
+商品名稱：${product}
+產地：${origin}
+作物／原料：${crop}
+商品特色：${features}
+建議售價：${price}
+促銷目標：${promotionGoal}
+
+圖片設計需求：
+1. 保留商品照片主體，讓商品看起來有質感。
+2. 設計成大型電商平台常見的促銷 Banner 風格。
+3. 加入簡潔醒目的標題文字：
+   - ${brand}
+   - ${product}
+   - ${features}
+   - 優惠價 ${price}
+4. 畫面可加入促銷標籤，例如：限時優惠、熱銷推薦、送禮首選。
+5. 背景需有高級感與購物節氛圍，但不要太雜亂。
+6. 適合商品頁 Banner、首頁活動圖與促銷專區使用。
+7. 請輸出橫式 16:9 廣告圖。`;
+
+  const lineAdPrompt = `【LINE團購圖 Prompt】
+
+請使用我上傳的商品照片，設計一張適合 LINE 社群團購使用的商品促購圖。
+
+商品資訊：
+品牌名稱：${brand}
+商品名稱：${product}
+產地：${origin}
+作物／原料：${crop}
+商品特色：${features}
+建議售價：${price}
+促銷目標：${promotionGoal}
+
+圖片設計需求：
+1. 保留商品照片主體，商品要清楚。
+2. 圖片風格要親切、溫暖、適合社群團購轉傳。
+3. 加入清楚文字：
+   - 團購限定
+   - ${product}
+   - ${origin} 產地直送
+   - ${price}
+   - 私訊訂購／留言+1
+4. 價格要醒目，適合手機觀看。
+5. 可加入小圖示：購物車、禮盒、產地、限量。
+6. 請輸出正方形 1:1 或直式 4:5 團購圖。`;
+
+  const igStoryAdPrompt = `【Instagram限動促購圖 Prompt】
+
+請使用我上傳的商品照片，設計一張適合 Instagram 限時動態的農產品促購圖。
+
+商品資訊：
+品牌名稱：${brand}
+商品名稱：${product}
+產地：${origin}
+作物／原料：${crop}
+商品特色：${features}
+建議售價：${price}
+促銷目標：${promotionGoal}
+
+圖片設計需求：
+1. 保留商品照片主體，搭配具有生活感與品牌感的背景。
+2. 設計成直式手機版廣告圖。
+3. 加入簡潔文字：
+   - ${brand}
+   - ${product}
+   - 來自 ${origin}
+   - ${price}
+   - 點擊了解／私訊訂購
+4. 文字不要太多，保持時尚、乾淨、社群感。
+5. 適合 IG 限動、Reels 封面、Threads 導購圖片。
+6. 請輸出 9:16 直式廣告圖。`;
+
+  const adPromptGuide = `【使用方式】
+
+1. 先到「AI農產品攝影師」產生商品照片。
+2. 回到本平台輸入商品名稱、特色、售價與促銷目標。
+3. 複製下方任一平台廣告圖 Prompt。
+4. 到 AI農創教練或 ChatGPT。
+5. 上傳商品照片。
+6. 貼上 Prompt。
+7. 請 AI 將照片改成蝦皮、momo、LINE 或 Instagram 廣告圖。`; 
+
+
+const learningQuestions = `【高中職學生學習問題】
 
 1. 為什麼同一個農產品，換成不同客群後，商品頁文案會不同？
 2. 商品頁最重要的前三個區塊應該是什麼？
@@ -224,7 +341,54 @@ A：建議強化商品照片、顧客評價、產地故事、促銷活動與清�
 
 請用清楚小標題整理，語氣要專業、溫暖、有行銷感，並適合農產品品牌、地方創生、食農教育與電商推廣。`;
 
-  const fullResult = `${productPage}\n\n────────────────────\n\n${ecommerceCopy}\n\n────────────────────\n\n${promotion}\n\n────────────────────\n\n${customerAnalysis}\n\n────────────────────\n\n${faq}\n\n────────────────────\n\n${learningQuestions}\n\n────────────────────\n\n【AI農創教練完整 Prompt】\n${coachPrompt}`;
+const fullResult = `${productPage}
+
+────────────────────
+
+${ecommerceCopy}
+
+────────────────────
+
+${promotion}
+
+────────────────────
+
+${customerAnalysis}
+
+────────────────────
+
+${faq}
+
+────────────────────
+
+【電商平台廣告圖片 Prompt】
+
+${adPromptGuide}
+
+────────────────────
+
+${shopeeAdPrompt}
+
+────────────────────
+
+${momoAdPrompt}
+
+────────────────────
+
+${lineAdPrompt}
+
+────────────────────
+
+${igStoryAdPrompt}
+
+────────────────────
+
+${learningQuestions}
+
+────────────────────
+
+【AI農創教練完整 Prompt】
+${coachPrompt}`;
 
   $("result").className = "result-card";
   $("result").innerHTML = `
@@ -280,11 +444,34 @@ A：建議強化商品照片、顧客評價、產地故事、促銷活動與清�
         <button class="copy-btn" onclick="copyText('faq')">複製 FAQ</button>
       </div>
 
-      <div class="result-box">
-        <h3>⑧ 學習問題</h3>
-        <div class="prompt" id="learningQuestions">${learningQuestions}</div>
-        <button class="copy-btn" onclick="copyText('learningQuestions')">複製學習問題</button>
-      </div>
+      <div class="result-box ad-prompt-box" id="ad-prompts">
+        <h3>⑧ 電商平台廣告圖片 Prompt</h3>
+          <p>
+            請先使用「AI農產品攝影師」產生商品照片，再複製下方任一 Prompt，
+            到 AI農創教練上傳商品照片，即可製作平台廣告圖。
+          </p>
+
+          <div class="prompt" id="adPromptGuide">${adPromptGuide}</div>
+            <button class="copy-btn" onclick="copyText('adPromptGuide')">複製使用方式</button>
+
+          <div class="prompt" id="shopeeAdPrompt">${shopeeAdPrompt}</div>
+            <button class="copy-btn" onclick="copyText('shopeeAdPrompt')">複製蝦皮主圖 Prompt</button>
+
+          <div class="prompt" id="momoAdPrompt">${momoAdPrompt}</div>
+            <button class="copy-btn" onclick="copyText('momoAdPrompt')">複製 momo 廣告圖 Prompt</button>
+
+          <div class="prompt" id="lineAdPrompt">${lineAdPrompt}</div>
+            <button class="copy-btn" onclick="copyText('lineAdPrompt')">複製 LINE 團購圖 Prompt</button>
+
+          <div class="prompt" id="igStoryAdPrompt">${igStoryAdPrompt}</div>
+            <button class="copy-btn" onclick="copyText('igStoryAdPrompt')">複製 IG 限動圖 Prompt</button>
+       </div>
+
+       <div class="result-box">
+        <h3>⑨ 學習問題</h3>
+          <div class="prompt" id="learningQuestions">${learningQuestions}</div>
+            <button class="copy-btn" onclick="copyText('learningQuestions')">複製學習問題</button>
+          </div>
 
       <div class="result-box agri-coach-box">
         <h3>🚀 AI農創教練｜電商實作中心</h3>
@@ -324,7 +511,8 @@ function clearAll() {
   $("targetCustomer").selectedIndex = 0;
   $("salesChannel").selectedIndex = 0;
   $("promotionGoal").selectedIndex = 0;
-
+  $("adPlatform").selectedIndex = 0;
+  
   document.querySelectorAll(".checkbox-card input").forEach(input => {
     input.checked = false;
   });
