@@ -852,6 +852,7 @@ grid-template-columns:1fr;
       color:#fff;
       font-weight:900;
       font-size:14px;
+      text-decoration:none;
     }
     .footer-link.secondary{
       background:#fff;
