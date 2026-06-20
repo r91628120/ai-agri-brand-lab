@@ -97,3 +97,45 @@
   }
 
 }
+
+/* Showcase Prompt Details */
+
+.prompt-detail{
+  margin:0 20px 24px;
+  border:1px solid var(--line);
+  border-radius:18px;
+  background:#fff8ea;
+  overflow:hidden;
+}
+
+.prompt-detail summary{
+  cursor:pointer;
+  padding:14px 16px;
+  font-weight:1000;
+  color:#9a4c00;
+  list-style:none;
+}
+
+.prompt-detail summary::-webkit-details-marker{
+  display:none;
+}
+
+.prompt-detail summary::after{
+  content:"＋";
+  float:right;
+  font-weight:1000;
+}
+
+.prompt-detail[open] summary::after{
+  content:"－";
+}
+
+.prompt-text{
+  padding:16px;
+  border-top:1px solid var(--line);
+  white-space:pre-wrap;
+  line-height:1.7;
+  color:#5a3500;
+  font-size:14px;
+  background:white;
+}
