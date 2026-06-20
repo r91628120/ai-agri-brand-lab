@@ -841,7 +841,11 @@ grid-template-columns:1fr;
       gap:9px;
       margin-top:12px;
     }
-    .footer-link{
+    .footer-link,
+    .footer-link:link,
+    .footer-link:visited,
+    .footer-link:hover,
+    .footer-link:active{
       display:inline-flex;
       align-items:center;
       justify-content:center;
@@ -852,8 +856,9 @@ grid-template-columns:1fr;
       color:#fff;
       font-weight:900;
       font-size:14px;
-      text-decoration:none;
+      text-decoration:none !important;
     }
+
     .footer-link.secondary{
       background:#fff;
       color:#168153;
