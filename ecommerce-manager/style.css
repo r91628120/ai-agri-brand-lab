@@ -415,3 +415,49 @@ footer p{opacity:.9}
   max-height:520px;
   object-fit:contain;
 }
+
+/* 修正手機版：商品頁視覺拆解教學 */
+
+@media(max-width:900px){
+
+  .compact-visual-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .mock-product-page,
+  .analysis-panel{
+    width:100%;
+    padding:18px;
+  }
+
+  .full-demo-image{
+    width:100%;
+    max-height:none;
+    object-fit:contain;
+  }
+
+  .compact-analysis{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:14px;
+  }
+
+  .compact-analysis .analysis-item{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+    padding:16px;
+    text-align:left;
+  }
+
+  .analysis-item h3{
+    writing-mode:horizontal-tb;
+    word-break:normal;
+  }
+
+  .analysis-item p{
+    writing-mode:horizontal-tb;
+    word-break:normal;
+    line-height:1.7;
+  }
+}
