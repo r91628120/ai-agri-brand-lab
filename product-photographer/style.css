@@ -235,3 +235,75 @@ footer h3{margin:0 0 8px}
   background:white;
   border:1px solid #f2c9a3;
 }
+
+/* AI攝影成果案例 */
+
+.photo-examples-section{
+  background:linear-gradient(135deg,#fffaf1,#f0fbff);
+}
+
+.photo-example-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:28px;
+  margin-top:38px;
+}
+
+.photo-example-card{
+  overflow:hidden;
+  background:white;
+  border:1px solid #f0dcc0;
+  border-radius:30px;
+  box-shadow:0 22px 54px rgba(91,58,12,.08);
+}
+
+.photo-example-card img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  display:block;
+}
+
+.photo-example-content{
+  padding:24px;
+}
+
+.photo-example-content span{
+  display:inline-flex;
+  margin-bottom:10px;
+  padding:6px 12px;
+  border-radius:999px;
+  background:#f0fbff;
+  color:#0ea5c6;
+  font-weight:900;
+  font-size:14px;
+}
+
+.photo-example-content h3{
+  margin:0 0 10px;
+  font-size:26px;
+  color:#3b2705;
+}
+
+.photo-example-content p{
+  margin:0 0 14px;
+  color:#66563e;
+}
+
+.photo-example-content ul{
+  margin:0;
+  padding-left:20px;
+  color:#3f2b08;
+  font-weight:800;
+}
+
+@media(max-width:900px){
+  .photo-example-grid{
+    grid-template-columns:1fr;
+  }
+
+  .photo-example-card img{
+    height:auto;
+  }
+}
+
