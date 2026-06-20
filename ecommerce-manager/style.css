@@ -393,3 +393,25 @@ footer p{opacity:.9}
   }
 
 }
+
+.compact-visual-grid{
+  grid-template-columns:1.15fr .85fr;
+  align-items:center;
+}
+
+.compact-analysis{
+  align-content:center;
+}
+
+.compact-analysis .analysis-item{
+  padding:14px 16px;
+}
+
+.compact-analysis .analysis-item p{
+  font-size:14px;
+}
+
+.full-demo-image{
+  max-height:520px;
+  object-fit:contain;
+}
