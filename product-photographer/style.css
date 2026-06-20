@@ -259,9 +259,12 @@ footer h3{margin:0 0 8px}
 
 .photo-example-card img{
   width:100%;
-  height:360px;
-  object-fit:cover;
+  height:auto;
+  max-height:520px;
+  object-fit:contain;
   display:block;
+  background:#fff8ea;
+  padding:10px;
 }
 
 .photo-example-content{
@@ -307,6 +310,3 @@ footer h3{margin:0 0 8px}
   }
 }
 
-.photo-example-card img{
-  background:#fff8ea;
-}
