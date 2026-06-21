@@ -35,7 +35,8 @@
     .mode-tabs{display:flex;gap:8px;flex-wrap:wrap}.mode{padding:10px 13px;border-radius:999px;background:#f1f7f3;color:var(--muted);font-weight:900;cursor:pointer;border:1px solid #e0eee5}.mode.active{background:var(--green);color:#fff}
     .output{white-space:pre-wrap;background:#f4faf6;border:1px solid #cfe6d7;border-radius:20px;padding:18px;line-height:1.75;min-height:220px}.quote{font-size:21px;font-weight:900;line-height:1.55;background:linear-gradient(135deg,#e8f7ee,#fff);border-left:6px solid var(--green);padding:18px;border-radius:18px}
     .path{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}@media(max-width:900px){.path{grid-template-columns:1fr}}
-    .step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;text-align:center}.step b{display:block;margin-top:6px}.preview{max-width:100%;border-radius:18px;border:1px solid var(--line);display:none;margin-top:12px}.notice{background:#fff7ed;border:1px solid #fed7aa;color:#8a3d04;border-radius:18px;padding:14px;line-height:1.7}
+    .step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:16px;text-align:center}.step b{display:block;margin-top:6px}
+    .notice{background:#fff7ed;border:1px solid #fed7aa;color:#8a3d04;border-radius:18px;padding:14px;line-height:1.7}
     .other-field{margin-top:12px;background:#f7fbf8;border:1px dashed #b9d9c5;border-radius:16px;padding:12px}.other-field .row{gap:8px}.other-field label{margin:0;font-weight:900}.other-field input[type=checkbox]{width:auto}.other-field input[type=text]{margin-top:8px}
     .action-btn{
        display:flex;
@@ -281,10 +282,33 @@
         </div>
         <label>場域文字描述</label>
         <textarea id="description">入口旁有大型停車場與販售中心，中央有草地可做大地遊戲，右側有採果區與香草植物區，左側有小動物區、餵羊區與餵牛區，後方有小湖與生態觀察區，山坡地可規劃滑草區。</textarea>
-        <label>上傳手繪地圖／空拍照片／場域平面圖</label>
-        <input type="file" id="mapImage" accept="image/*" onchange="previewImage(event)">
-        <img id="preview" class="preview" alt="場域圖片預覽">
-        <p class="small">提醒：網頁本身先協助學生整理規劃資料與GPT指令；真正的圖片理解與場域布置圖生成，可交給AI農創教練搭配學生上傳的手繪圖或空拍圖完成。</p>
+        
+           <h3>🗺️ Step 0｜準備場域圖片</h3>
+
+              <div class="notice">
+                <strong>AI圖片分析使用方式</strong><br><br>
+
+                     請先準備以下任一圖片：
+
+                     ✅ 手繪地圖<br>
+                     ✅ 空拍照片<br>
+                     ✅ 場域平面圖<br><br>
+
+                     完成下方資料填寫後：
+
+                      ① 產生 GPT 指令<br>
+                      ② 開啟 AI農創教練<br>
+                      ③ 將圖片與指令一起貼上<br><br>
+
+                      AI 將自動協助：
+
+                       ✅ 場域分析<br>
+                       ✅ 動線規劃<br>
+                       ✅ 體驗活動設計<br>
+                       ✅ 食農教育規劃<br>
+                       ✅ 休閒農場場域圖卡生成
+              </div>
+      
       </div>
 
       <div class="card span-5">
@@ -311,6 +335,18 @@
 
       <div class="card span-12" id="prompt">
         <h2>④ 一鍵產生 GPT 指令</h2>
+
+        <div class="notice" style="margin-bottom:15px;">
+          <strong>💡 建議流程</strong><br>
+
+                   Step 1：填寫農場資料<br>
+                   Step 2：產生 GPT 指令<br>
+                   Step 3：開啟 AI農創教練<br>
+                   Step 4：上傳圖片＋貼上指令<br>
+                   Step 5：取得完整休閒農場規劃<br>
+                   Step 6：生成場域說明圖卡
+        </div>
+
         <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 AI農創教練，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
         <div class="row">
           <button class="action-btn" onclick="generatePrompt()">產生GPT指令</button>
@@ -326,6 +362,13 @@
 
           <button class="secondary action-btn"
               onclick="generateSample()">產生範例成果</button>
+          
+          <button class="secondary action-btn"
+              onclick="generateMapCardPrompt()">
+                      🎨 生成場域說明圖卡
+          </button>
+
+
         </div>
         <div id="output" class="output mt">請先按「產生GPT指令」。</div>
       </div>
@@ -453,10 +496,10 @@ function selected(id){
   }
   return arr;
 }
-function previewImage(e){const f=e.target.files[0],img=document.getElementById('preview');if(!f){img.style.display='none';return}img.src=URL.createObjectURL(f);img.style.display='block'}
+
 function generatePrompt(){
  const data={farmName:farmName.value,farmSize:farmSize.value,crop:crop.value,people:people.value,hours:hours.value,audience:audience.value,description:description.value,facilities:selected('facilities'),zone:currentZone,games:selected('gamesList'),idea:studentIdea.value};
- const txt=`你是「AI休閒農場場域規劃師、食農教育設計師與活動企劃教練」。請根據我提供的農場資料、手繪地圖或空拍照片，協助我設計一座吸睛的休閒農場，並產出完整企劃。
+ const txt=`你是「AI休閒農場場域規劃師、食農教育設計師與活動企劃教練」。請根據我提供的農場資料，以及我一併夾帶上傳的「手繪地圖／空拍照片／場域平面圖」，協助我設計一座吸睛的休閒農場，並產出完整企劃。重要提醒：如果我有上傳圖片，請優先根據圖片中的道路、入口、建物、地形、空地、設施位置進行分析；如果沒有圖片，請根據文字描述自行推演合理場域配置。
 
 【農場基本資料】
 農場名稱：${data.farmName}
@@ -525,6 +568,64 @@ function generateAgriAssistantPrompt(){
  document.getElementById('output').textContent=assistantTxt;
 }
 function copyPrompt(){navigator.clipboard.writeText(document.getElementById('output').textContent).then(()=>alert('已複製GPT指令！'))}
+
+function generateMapCardPrompt(){
+ const data={
+  farmName:farmName.value,
+  farmSize:farmSize.value,
+  crop:crop.value,
+  people:people.value,
+  hours:hours.value,
+  audience:audience.value,
+  description:description.value,
+  facilities:selected('facilities'),
+  zone:currentZone,
+  games:selected('gamesList'),
+  idea:studentIdea.value
+ };
+
+ const txt=`你是「AI休閒農場場域圖卡設計師、食農教育視覺設計師與農場導覽地圖規劃師」。
+
+請根據我先前提供的農場資料，以及我一併上傳的「手繪地圖／空拍照片／場域平面圖」，幫我生成一張適合教學展示的「休閒農場場域說明圖卡」。
+
+重要提醒：
+如果我有上傳圖片，請優先參考圖片中的道路、入口、建物、地形、空地與設施位置重新規劃。
+如果我沒有上傳圖片，請根據以下文字資料自行推演一張合理的休閒農場場域規劃圖。
+
+【農場基本資料】
+農場名稱：${data.farmName}
+場地大小：${data.farmSize}
+主要作物／主題：${data.crop}
+預計人數：${data.people}
+活動時間：${data.hours}
+活動對象：${data.audience}
+場域描述：${data.description}
+
+【已規劃設施】
+${data.facilities.join('、')}
+
+【希望加入的體驗活動】
+${data.games.join('、')}
+
+【學生自己的想法】
+${data.idea || '請 AI 協助發想適合的活動遊戲。'}
+
+請生成一張「直式或橫式教學圖卡」，風格如下：
+1. 休閒農場鳥瞰配置圖或可愛插畫地圖風格
+2. 清楚標示入口、停車場、遊客中心、販售中心、廁所、採果區、植物解說區、湖水／生態池、小動物區、大地遊戲區、休息區
+3. 用紅色虛線或箭頭呈現遊客導覽動線
+4. 加入拍照打卡點、關卡任務點、休息區、安全提醒
+5. 右側或下方加入圖例
+6. 文字以繁體中文呈現
+7. 整體風格溫暖、明亮、適合高中職農業課程展示
+8. 圖卡標題請使用：「${data.farmName}｜休閒農場場域說明圖卡」
+
+請讓圖片具有教學用途，能讓學生看懂：
+場域怎麼分區、遊客怎麼走、活動在哪裡進行、哪些地方需要注意安全。`;
+
+ document.getElementById('output').textContent=txt;
+}
+
 function generateSample(){document.getElementById('output').textContent=`【範例成果摘要】
 農場定位：一甲地親子食農體驗農場，以「看見作物、親近動物、完成任務、帶走農產品」為主軸。
 
