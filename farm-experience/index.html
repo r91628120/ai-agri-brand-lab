@@ -387,14 +387,16 @@
         <h2>④ 一鍵產生 GPT 指令</h2>
 
         <div class="notice" style="margin-bottom:15px;">
-          <strong>💡 建議流程</strong><br>
+              <strong>💡 建議流程</strong><br><br>
 
-                   Step 1：填寫農場資料<br>
-                   Step 2：產生 GPT 指令<br>
-                   Step 3：開啟 AI農創教練<br>
-                   Step 4：上傳圖片＋貼上指令<br>
-                   Step 5：取得完整休閒農場規劃<br>
-                   Step 6：生成場域說明圖卡
+                  Step 1：填寫農場資料<br>
+                  Step 2：產生 GPT 指令<br>
+                  Step 3：複製指令<br>
+                  Step 4：開啟 AI農創教練<br>
+                  Step 5：上傳手繪圖／空拍圖／場域圖<br>
+                  Step 6：貼上指令<br>
+                  Step 7：取得完整規劃成果<br>
+                  Step 8：生成場域說明圖卡
         </div>
 
         <p class="muted">請學生先完成上方資料，再按下按鈕產生指令。接著把指令貼到 AI農創教練，並上傳手繪地圖或場域照片，就能請 AI 產出完整規劃。</p>
@@ -415,9 +417,12 @@
           
           <button class="secondary action-btn"
               onclick="generateMapCardPrompt()">
-                      🎨 生成場域說明圖卡 (請按完後，再按上方"複製指令"，貼到AI農創教練+可加照片)
+                      🎨 生成場域說明圖卡 
           </button>
-
+           <div class="small" style="text-align:center;margin-top:8px;">
+               💡 按下後請再點選「複製指令」，貼到 AI農創教練，
+                   並可搭配手繪圖、空拍照片或場域平面圖一起分析。
+           </div>
 
         </div>
         <div id="output" class="output mt">請先按「產生GPT指令」。</div>
